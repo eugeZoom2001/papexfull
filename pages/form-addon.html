@@ -1,0 +1,805 @@
+<!doctype html>
+<html class="no-js" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>PapexFull</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="../img/logpico.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="../plugins/mohithg-switchery/dist/switchery.min.css">
+    <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        .result {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+        .result {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+        .truncate {
+            max-width: 200px;
+            /* Ajusta el ancho máximo según tu necesidad */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+    <style>
+        .custom-column {
+            font-weight: bold;
+            /* Texto en negrita */
+            font-size: 1.25rem;
+            /* Tamaño del texto más grande (20px si 1rem = 16px) */
+        }
+    </style>
+    <style>
+        .inactive-container {
+            pointer-events: none;
+            /* Desactiva la interactividad */
+            opacity: 0.5;
+            /* Hace el contenedor visualmente inactivo */
+        }
+
+        .active-container {
+            pointer-events: auto;
+            /* Activa la interactividad */
+            opacity: 1;
+            /* Restaura la opacidad completa */
+        }
+    </style>
+    <style>
+        /* Estilo para centrar el spinner y darle opacidad */
+        #spinner {
+            display: none;
+            /* Ocultar el spinner inicialmente */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            /* Asegura que esté encima de otros elementos */
+        }
+
+        #overlay {
+            display: none;
+            /* Ocultar el overlay inicialmente */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Fondo oscuro con opacidad */
+            z-index: 9998;
+            /* Justo debajo del spinner */
+        }
+
+        .custom-spinner {
+            width: 4rem;
+            /* Ancho personalizado */
+            height: 4rem;
+            /* Alto personalizado */
+            border: 0.3em solid rgba(255, 255, 255, 0.5);
+            /* Color y opacidad del borde */
+            border-top: 0.3em solid #ff000c;
+            /* Color del borde superior */
+            border-radius: 50%;
+            /* Hacerlo circular */
+            animation: spin 0.75s linear infinite;
+            /* Animación de giro */
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <style>
+        .custom-button {
+            width: 60px;
+            /* Ancho específico */
+            height: 35px;
+            /* Alto específico */
+            padding-top: 9px;
+            /* Mayor espacio arriba */
+
+            text-align: center;
+            /* Alinear el texto al centro */
+
+        }
+    </style>
+    <style>
+        .custom-button2 {
+
+            padding-top: 9px;
+            /* Mayor espacio arriba */
+            text-align: center;
+            /* Alinear el texto al centro */
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="wrapper">
+        <header class="header-top" header-theme="dark">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                    <div class="top-menu d-flex align-items-center">
+                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                        <div class="header-search">
+                            <div class="input-group">
+                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
+                            </div>
+                        </div>
+                        <button type="button" id="navbar-fullscreen" class="nav-link"><i
+                                class="ik ik-maximize"></i></button>
+                    </div>
+                    <div class="top-menu d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
+                            <div class="dropdown-menu dropdown-menu-right notification-dropdown"
+                                aria-labelledby="notiDropdown">
+                                <h4 class="header">Notificaciones</h4>
+                                <div class="notifications-wrap">
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-message-square"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Te hicieron una
+                                                pregunta</span>
+                                            <span class="media-content">Hola queria saber ...</span>
+                                        </span>
+                                    </a>
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-dollar-sign"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Venta producto</span>
+                                            <span class="media-content">Soporte TV ...</span>
+                                        </span>
+                                    </a>
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-message-square"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Te hicieron una
+                                                pregunta</span>
+                                            <span class="media-content">Lo tenes en color azul ...</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="footer"><a href="javascript:void(0);"></a></div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img class="img-fluid" width="22" height="22"
+                                    src="../img/user.png" alt=""></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href=""><i class="ik ik-user dropdown-icon"></i> Maria
+                                    Perez</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#exampleModalCenter"><i class="ik ik-settings dropdown-icon"></i>
+                                    Cambiar Contraseña</a>
+
+
+                                <a class="dropdown-item" href="../pages/login.html"><i
+                                        class="ik ik-power dropdown-icon"></i> Salir</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterLabel">Cambiar Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="InputPassword">Ingresa tu contraseña actual</label>
+                            <input type="password" class="form-control" id="exampleInputPassword" placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="InputPasswordNuevo">Ingresa la nueva contraseña</label>
+                            <input type="password" class="form-control" id="InputPasswordNuevo" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPasswordNuevo2">Repeti la nueva contraseña</label>
+                            <input type="password" class="form-control" id="InputPasswordNuevo2" placeholder="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-wrap">
+            <div class="app-sidebar colored">
+                <div class="sidebar-header">
+                    <a class="header-brand" href="">
+                        <a href="../index.html"><img class="img-fluid" width="140" height="92" src="../img/logpico2.png"
+                                alt=""></a>
+
+                        <span class="text"></span>
+                    </a>
+                    <button type="button" class="nav-toggle"><i data-toggle="expanded"
+                            class="ik ik-toggle-right toggle-icon hidden"></i></button>
+                    <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="nav-container">
+                        <nav id="main-menu-navigation" class="navigation-main">
+                            <br>
+
+                            <div class="nav-item active">
+                                <a href="../index.html"><i class="ik ik-edit"></i><span>Stock de productos</span></a>
+                            </div>
+                            <div class="nav-item">
+                                <a href=""><i class="ik ik-save"></i><span>Gestion de articulos</span></a>
+                            </div>
+                            <div class="nav-item">
+                                <a href="../pages/ventas.html"><i class="fas fa-hand-holding-usd"></i><span>Gestion de
+                                        Ventas</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="javascript:void(0)"><i class="fas fa-barcode"></i><span>Generar nuevo
+                                        codigo</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/calendar.html" class="menu-item">Codigo de barras</a>
+                                    <a href="../pages/codigoqr.html" class="menu-item">Codigo QR</a>
+
+                                </div>
+                            </div>
+                            <div class="nav-lavel">Proveedores</div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><i class="ik ik-user-plus"></i><span>Lista de Proveedores</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/proveedores.html" class="menu-item">
+                                        Listar/editar/eliminar</a>
+                                    <a href="../pages/nuevoprov.html" class="menu-item">
+                                        Alta nuevo Proveedor</a>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="nav-lavel">Informacion</div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><i class="ik ik-pie-chart"></i><span>Graficos</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/charts-chartist.html" class="menu-item active">Lista de
+                                        graficos</a>
+                                    <a href="../pages/charts-flot.html" class="menu-item">Graficos en cascada</a>
+                                    <a href="../pages/charts-knob.html" class="menu-item">Manejo de graficos</a>
+                                    <a href="../pages/charts-amcharts.html" class="menu-item">Graficos interactivos</a>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row align-items-end">
+                            <div class="col-lg-8">
+                                <div class="page-header-title">
+                                    <i class="fas fa-database bg-blue"></i>
+                                    <div class="d-inline">
+                                        <h5>Gestion de articulos</h5>
+                                        <span>Da de alta, modifica, actualiza articulos de stock</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="row">
+                        <div class="container mt-5">
+
+                            <!-- Input group card end -->
+                            <!-- Input Group Sizes & Colors card start -->
+
+                            <!-- Input Group Sizes & Colors card end -->
+                            <!-- Input Group With Components card start -->
+
+                            <!-- Input Group With Components card end -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Gestiona un articulo</h3>
+                                </div>
+                                <br>
+                                <div class="card-body">
+
+                                    <form id="formArticulo">
+                                        <div class="row">
+                                            <label class="col-sm-2 col-lg-2 col-form-label">Nro. de codigo de
+                                                barras</label>
+                                            <div class="col-sm-2 col-lg-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i
+                                                                class="fas fa-barcode"></i></label>
+                                                    </span>
+                                                    <input type="text" class="form-control form-control-bold"
+                                                        id="inputBarras" placeholder="">
+                                                </div>
+                                            </div>
+                                            <label class="col-form-label ">Codigo SKU</label>
+                                            <div class="col-sm-2 col-lg-3">
+                                                <div class="input-group">
+
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i
+                                                                class="fas fa-code"></i></label>
+                                                    </span>
+                                                    <input type="text" class="form-control form-control-bold"
+                                                        id="inputSku" placeholder="">
+                                                    <div class="input-group-append">
+                                                        <button
+                                                            class="btn btn-outline-secondary dropdown-toggle custom-button2 "
+                                                            type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">&nbsp;<i
+                                                                class="fas fa-angle-double-down "></i></button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">SK025LD1</a>
+                                                            <a class="dropdown-item" href="#">ST014E02</a>
+                                                            <a class="dropdown-item" href="#">SKU12345</a>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <label class="col-form-label">Verificar Existencia</label>
+                                            <div class="col-sm-2 col-lg-2">
+                                                <button type="button" id="loadButton"
+                                                    class="btn btn-danger custom-button">&nbsp;<i
+                                                        class="fab fa-sistrix fa-lg"></i>&nbsp;</button>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Descripcion del
+                                                articulo</label>
+                                            <div class="col-sm-8 col-lg-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i
+                                                                class="ik ik-file-text"></i></label>
+                                                    </span>
+                                                    <input type="text" class="form-control form-control-bold"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Selecionar Proveedor</label>
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-prepend">
+                                                        <label class="input-group-text"><i
+                                                                class="ik ik-user-plus"></i></label>
+                                                    </span>
+                                                    <select class="form-control">
+                                                        <option>Selecionar un Proveedor</option>
+                                                        <option>Proveedor 1</option>
+                                                        <option>Proveedor 2</option>
+                                                        <option>Proveedor 3</option>
+                                                        <option>Proveedor 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <!-- Primer contenedor -->
+
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Ingresar cantidad</label>
+
+                                            <div class="col-sm-2 col-md-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="ik ik-folder-plus"></i></span>
+                                                    </div>
+                                                    <input type="number" class="form-control form-control-bold"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <!-- Segundo contenedor -->
+
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Cantidad actual en
+                                                stock</label>
+
+                                            <div class="col-sm-2 col-md-2">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i
+                                                                class="ik ik-database"></i></span>
+                                                    </div>
+                                                    <input type="number" class="form-control form-control-bold"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+
+                                            <!-- Tercer contenedor -->
+
+                                            <label class="col-sm-4 col-lg-2 col-form-label">Ingresar por codigo </label>
+
+                                            <div class="col-sm-2 col-md-2">
+                                                <div class="input-group">
+
+
+                                                    <button type="button" class="btn btn-outline-dark btn-lg"
+                                                        data-toggle="modal" data-target="#exampleModalCenter2"><i
+                                                            class="fa fa-rss"></i> Lectora de codigos</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <div class="form-center-group">
+
+                                            <label>Elegi imagen para el articulo -- </label>
+                                            <span class="space"> </span>
+                                            <span class="space"> </span>
+                                            <span class="space"> </span>
+
+
+                                            <input type="file" name="img[]" class="file-upload-default">
+                                            <div class="input-group col-xs-12">
+
+                                                <span class="input-group-append">
+
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                        <br>
+                                        <hr>
+                                        <br>
+                                        <br>
+                                        <div class="container mt-5">
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-primary mr-2">Cancelar</button>
+                                                    <button type="button" id="cancelButton"
+                                                        class="btn btn-success">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="overlay"></div>
+                                        <div id="spinner" class="custom-spinner" role="status"></div>
+                                        <br>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <body>
+                        <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterLabel2" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterLabel"><i
+                                                class="fas fa-sign-in-alt"></i> Ingreso por codigo de barras</h5>
+
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="container mt-5">
+                                            <div class="row">
+                                                <br>
+                                                <label class="col-sm-3 col-lg-3 col-form-label">Nro. de codigo de
+                                                    barras</label>
+                                                <div class=" col-md-4">
+                                                    <div class="input-group">
+                                                        <span class="input-group-prepend">
+                                                            <label class="input-group-text"><i
+                                                                    class="fas fa-barcode"></i></label>
+                                                        </span>
+                                                        <div id="contentContainer" class="inactive-container">
+                                                            <input type="number" class="form-control form-control-bold"
+                                                                id="inputField" placeholder="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button id="activateButton" class="btn btn-light btn-xl"><i
+                                                        class="fa fa-rss"></i> Pulse aqui para escanear</button>
+                                            </div>
+                                            <br>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Nro. codigo</th>
+                                                        <th scope="col">SKU</th>
+                                                        <th scope="col">Descripcion</th>
+                                                        <th scope="col">Cantidad</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">9878456422</th>
+                                                        <td>mk45dff5</td>
+                                                        <td class="truncate">Disco Rigido Externo 2tb Seagate Expansion
+                                                            Usb 3.0 Portatil</td>
+                                                        <td class="custom-column text-danger">3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">547899998</th>
+                                                        <td>hh5643eer</td>
+                                                        <td class="truncate">Memoria Ram 8gb Ddr3 Hyperx Fury 1600 Mhz
+                                                        </td>
+                                                        <td class="custom-column text-danger">8</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">8785455522</th>
+                                                        <td>jhg667jjj</td>
+                                                        <td class="truncate">Kit Completo Rural Yagi 24dbi 4g
+                                                            +inductor+cable 700-2600mhz</td>
+                                                        <td class="custom-column text-danger">12</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">.</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">.</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">.</th>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-success">Agregar a stock</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                </div>
+            </div>
+
+
+            <footer class="footer">
+                <div class="w-100 clearfix">
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-cente">Desarrollado por Tecno <i
+                            class="fa fa-star text-primary"></i> Squad para Papex<i class="text-danger">F</i>ull</span>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+    <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel"
+        aria-hidden="true" data-backdrop="false">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+                class="ik ik-x-circle"></i></button>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="quick-search">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 ml-auto mr-auto">
+                                <div class="input-wrap">
+                                    <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
+                                    <i class="ik ik-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../plugins/select2/dist/js/select2.min.js"></script>
+    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../plugins/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="../plugins/mohithg-switchery/dist/switchery.min.js"></script>
+    <script src="../dist/js/theme.min.js"></script>
+    <script src="../js/form-advanced.js"></script>
+    <script src="..//src/scripts/constantes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script src="../src/scripts/addUpdateArticulos.js"></script>
+    <script>
+        document.getElementById("activateButton").addEventListener("click", function () {
+            var container = document.getElementById("contentContainer");
+            var inputField = document.getElementById("inputField");
+
+            // Activar el contenedor
+            container.classList.remove("inactive-container");
+            container.classList.add("active-container");
+
+            // Habilitar el campo de entrada
+            inputField.disabled = false;
+
+            // Colocar el cursor en el campo de entrada
+            inputField.focus();
+        });
+    </script>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('inputBarras').focus();
+        });
+    </script> -->
+
+    <script>
+        let total = 0; // Variable para almacenar el total
+
+        function incrementTotal() {
+            total += 1; // Incrementa el total en 1
+            document.getElementById('result').textContent = `Total: ${total}`; // Actualiza el resultado
+            document.getElementById('inputValue').value = ''; // Limpiar el campo de entrada
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') { // Verifica si la tecla presionada es Enter
+                event.preventDefault(); // Evita el comportamiento por defecto del Enter
+                incrementTotal(); // Llama a la función para incrementar el total
+            }
+        }
+    </script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+                function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+            e.src = 'https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-XXXXX-X', 'auto'); ga('send', 'pageview');
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            $('#loadButton').click(function () {
+                $('#overlay').show(); // Mostrar el overlay
+                $('#spinner').show(); // Mostrar el spinner
+
+                // Simular un proceso de carga
+                setTimeout(function () {
+                    $('#overlay').hide(); // Ocultar el overlay
+                    $('#spinner').hide(); // Ocultar el spinner
+                }, 2000); // Cambia 2000 por el tiempo que desees
+            });
+        });
+    </script> -->
+    <script>
+        // Si necesitas manejar alguna acción adicional, puedes hacerlo aquí.
+        $(document).ready(function () {
+            $('#inputWithDatalist').on('input', function () {
+                // Aquí puedes agregar lógica adicional si lo deseas
+            });
+        });
+    </script>
+</body>
+
+</html>

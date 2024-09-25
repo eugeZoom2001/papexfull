@@ -1,0 +1,68 @@
+/* Style.css */
+
+/* Aplica estilos solo al div con el ID #specific-container */
+#specific-container {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+#specific-container .container {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 40px;        /* Aumenta el padding para más espacio interno */
+  width: 80%;           /* Aumenta el ancho del contenedor al 80% del viewport */
+  max-width: 1200px;    /* Define un ancho máximo para que no sea demasiado grande */
+  height: 80vh;         /* Aumenta la altura del contenedor al 80% del viewport */
+  text-align: center;
+  overflow: auto;       /* Añade scroll si el contenido excede el tamaño del contenedor */
+}
+
+#specific-container .header {
+  text-align: center;
+}
+
+#specific-container h1 {
+  font-size: 32px;      /* Aumenta el tamaño de la fuente del título */
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#specific-container hr {
+  border: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+#specific-container input[type="text"] {
+  width: 100%;          /* El campo de entrada ocupa el 100% del contenedor */
+  padding: 20px;        /* Aumenta el padding para agrandar el campo de entrada */
+  font-size: 18px;      /* Aumenta el tamaño del texto */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+#specific-container .qrcode {
+  margin: 20px 0;
+}
+
+#specific-container button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px 30px;   /* Aumenta el tamaño del botón */
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+#specific-container button:hover {
+  background-color: #0056b3;
+}
