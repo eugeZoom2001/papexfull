@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <body>
+    <div class="container">
+      <h1>File Upload</h1>
+      <form id="form">
+        <div class="input-group">
+          <label for="barras">barras</label>
+          <input name="barras" id="barras" placeholder="enter barras" />
+        </div>
+        <div class="input-group">
+          <label for="sku">sku</label>
+          <input name="sku" id="sku" placeholder="Enter sku" />
+        </div>
+        <div class="input-group">
+          <label for="proveedor">proveedor</label>
+          <input name="proveedor" id="proveedor" placeholder="Enter proveedor" />
+        </div>
+        <div class="input-group">
+          <label for="stock">stock</label>
+          <input name="stock" id="stock" placeholder="Enter stock" />
+        </div>
+        <div class="input-group">
+          <label for="name">desc</label>
+          <input name="desc" id="desc" placeholder="Enter descripcion" />
+        </div>
+
+        <div class="input-group">
+          <label for="file">Select files</label>
+          <input id="file" type="file" name="file" />
+        </div>
+        <button class="submit-btn" type="submit">Upload</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</body>
+
+</html>

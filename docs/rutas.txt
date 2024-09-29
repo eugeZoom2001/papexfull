@@ -1,0 +1,8 @@
+-   Articulos
+ base  http://localhost:3000/api/articulos
+
+ GET {base}/code/?barras=&sku= Obtener articulos por barras + sku
+
+ GET {base}/barras/:barras   --obtener articulos por codico de barars
+
+ {base}/?id   -obtener , actualizar y borrar articulos por id

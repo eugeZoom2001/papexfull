@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mybutton {
+            color: red
+        }
+
+        p {
+            color: blue
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <div id="father">father</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $("#father").append(`<div class="container">
+        <p>Hello!</p><button class=
+        "mybutton">MyButton</button></div>`);
+        var str = $("p").text();
+        console.log(str);
+
+    })
+
+</script>
+
+
+</html>

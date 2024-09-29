@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="myselect">
+        <option value="1" selected>Mr</option>
+        <option value="2">Mrs</option>
+        <option value="3">Ms</option>
+        <option value="4">Dr</option>
+        <option value="5">Prof</option>
+    </select>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        let myValue
+        $("#myselect option[value='" + 5 + "']").attr("selected", "selected");
+
+        $("#myselect").on("change", function (e) {
+
+            //myValue = $(this).val()
+            myValue = $("#myselect").val()
+            console.log(myValue);
+
+        }
+        )
+
+    })
+
+</script>
+
+</html>
