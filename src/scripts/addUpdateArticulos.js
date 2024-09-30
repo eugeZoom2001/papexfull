@@ -12,6 +12,7 @@ let prov_actual = null;
 let stock_actual = 0;
 let sku_actual = null;
 let formData = null;
+let proveedores_sku = new Set()
 const files = document.getElementById("file");
 $(document).ready(async function () {
   $("#inputBarras").focus();
@@ -108,9 +109,10 @@ const getDataSkus = (skus) => {
   } else {
     //
     //ar_idActual = skus[0].ar_id;
-
+    prov_actual = skus[0].ar_proveedor
     for (const sku of skus) {
       let option = document.createElement("option");
+
       option.setAttribute("id", sku.ar_id);
       option.setAttribute("value", sku.ar_sku);
       option.setAttribute("prov", sku.ar_proveedor);
