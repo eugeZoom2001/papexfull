@@ -46,7 +46,7 @@ $(document).ready(async function () {
       $("#stockActual").val(stock_actual);
       $("#descripcion").val(desc);
     }
-
+    $("#descripcion").focus();
     //console.log("sku", sku, "id", id, "prov_actual ", prov);
     await getProveedores();
   });
