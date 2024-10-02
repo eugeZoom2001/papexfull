@@ -19,6 +19,12 @@ $(document).ready(async function () {
   $("#inputSku").click(function (e) {
     $("#inputSku").val("");
   });
+  $("#descripcion").click(function (e) {
+    $("#descripcion").val("");
+  });
+  $("#cantidad").click(function (e) {
+    $("#cantidad").val("");
+  });
   $("#inputBarras").change(async function (e) {
     if ($("#inputBarras").val()) {
       $("#inputSku").focus();
