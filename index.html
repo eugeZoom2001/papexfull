@@ -52,7 +52,7 @@
         }
 
         /* Estilo personalizado para el encabezado de la tabla */
-        #example thead th {
+        #articulos thead th {
             background-color: #dddcdc;
             /* Cambia este color a tu preferencia */
             color: #000;
@@ -61,23 +61,23 @@
         }
 
         /* Estilo personalizado para las filas de la tabla */
-        #example tbody tr {
+        #articulos tbody tr {
             position: relative;
             /* Necesario para posicionar la sombra */
         }
 
-        #example tbody tr:hover {
+        #articulos tbody tr:hover {
             background-color: #f1f1f1;
             /* Cambia el color de fondo de la fila al pasar el cursor sobre ella */
         }
 
         /* Aplicar sombra entre las filas */
-        #example tbody tr:not(:last-child) {
+        #articulos tbody tr:not(:last-child) {
             border-bottom: 1px solid #ddd;
             /* Línea de separación entre filas */
         }
 
-        #example tbody tr {
+        #articulos tbody tr {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             /* Sombra en las filas */
             transition: box-shadow 0.3s ease;
@@ -85,7 +85,7 @@
         }
 
         /* Efecto de sombra al pasar el cursor sobre la fila */
-        #example tbody tr:hover {
+        #articulos tbody tr:hover {
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             /* Sombra más intensa al pasar el cursor */
         }
@@ -572,7 +572,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
 
 
                         <!-- Tabla con estilos DataTables -->
-                        <table id="example" class="hover" style="width:100%">
+                        <table id="articulos" class="hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th><i class="fas fa-camera"></i> Articulo</th>
@@ -1566,45 +1566,9 @@ otro comentario más
         <script src="js/layouts.js"></script>
         <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
         <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var quiebre = new bootstrap.Modal(document.getElementById('quiebre'));
-                //quiebre.show();
-            });
-        </script>
-        <script>
-            function redirectToPage() {
-                window.location.href = 'pages/form-addon.html'; // Cambia esta URL según tu estructura de proyecto
-            }
-        </script>
-        <script>
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]], // Opciones de filas por página
-                    "pageLength": 5, // Muestra 5 entradas por defecto
-                    columnDefs: [
-                        { targets: [0, 1, 2, 3, 4, 5, 6, 7] },
-                        { orderable: false, targets: [0, 7] },
-                    ],
-                    "order": [[1, 'asc']],
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ entradas",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                        "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                        "infoFiltered": "(filtrado de _MAX_ entradas totales)",
-                        "search": "Buscar:",
-                        "paginate": {
-                            "first": "Primero",
-                            "last": "Último",
-                            "next": ">>",
-                            "previous": "<<"
-                        }
-                    }
-                });
+        <script src="src/scripts/constantes.js"></script>
+        <script src="src/scripts/index.js"></script>
 
-            });
-        </script>
 
 
 </body>
