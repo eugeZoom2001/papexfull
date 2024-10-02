@@ -74,14 +74,6 @@ $(document).ready(async function () {
 
   $("#formArticulo").submit(function (e) {
     e.preventDefault();
-    // console.log("-------------guardo -----------------------------");
-    // console.log("esAlta", esAlta);
-    // console.log("id actual", ar_idActual);
-    // console.log("prov actual", prov_actual);
-    // console.log("prov_selected", $("#selectProv").val());
-    // console.log("desc_selected", $("#descripcion").val());
-    // console.log("stock_selected", $("#cantidad").val());
-    // console.log("sku_actual", sku_actual);
     formData = new FormData();
     formData.append("sku", sku_actual);
     formData.append("barras", $("#inputBarras").val().trim());

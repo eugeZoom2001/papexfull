@@ -10,3 +10,6 @@ const urlByArtId = `${urlBase}/`; // -obtener , actualizar y borrar articulos po
 // Proveedores
 
 const urlProveedores = "http://localhost:3000/api/proveedores";
+
+// imagenes articulos
+const urlImg = "http://localhost:3000"
