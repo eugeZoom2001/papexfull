@@ -26,6 +26,7 @@ const sendData = async (formData) => {
   })
     .then(function (response) {
       console.log(response);
+      $("input").val('');
     })
     .catch(function (response) {
       console.log(response);

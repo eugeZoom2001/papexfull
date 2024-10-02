@@ -1,6 +1,3 @@
-function redirectToPage() {
-  window.location.href = "pages/form-addon.html"; // Cambia esta URL según tu estructura de proyecto
-}
 $(document).ready(function () {
   var quiebre = new bootstrap.Modal(document.getElementById("quiebre"));
   //quiebre.show();
