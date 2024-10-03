@@ -190,7 +190,6 @@ const configTable = () => {
     ], // Opciones de filas por página
     pageLength: 5, // Muestra 5 entradas por defecto
     columnDefs: [
-
       { targets: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
       { orderable: false, targets: [1, 7] },
     ],
@@ -210,7 +209,7 @@ const configTable = () => {
       },
     },
   });
-  tableArticulos.column(0).visible(false);
+
 }
 
 
