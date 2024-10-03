@@ -1,5 +1,7 @@
 let articulos = null
+let tableArticulos
 $(document).ready(function () {
+
   init()
 });
 
@@ -23,12 +25,15 @@ const getArticulosFromServer = async () => {
 }
 
 const setArticulosToTable = (articulos) => {
+  let bodyArticulos = document.getElementById("tbodyArticulos")
+
   for (const articulo of articulos) {
-    console.log(articulo);
+    //console.log(articulo);
     let tr = document.createElement("tr")
 
     let tdId = document.createElement("td")
     tdId.innerText = articulo.id
+    tdId.setAttribute("class", "text-center")
     tr.appendChild(tdId)
 
     let tdImg = document.createElement("td")
@@ -64,9 +69,9 @@ const setArticulosToTable = (articulos) => {
     let tdStock = document.createElement("td")
     tdStock.setAttribute("class", "text-center")
     let tdSpanStock = document.createElement("span")
-    tdSpanStock.setAttribute("class", "badge badge-pill badge-success  custom-badge-reserva")
+    tdSpanStock.setAttribute("class", "badge badge-pill badge-success custom-badge-verde")
     let tdStrongStock = document.createElement("strong")
-    tdStrongStock.innerText = articulo.stock.toString()
+    tdStrongStock.innerText = articulo.stock
     tdSpanStock.appendChild(tdStrongStock)
     tdStock.appendChild(tdSpanStock)
     tr.appendChild(tdStock)
@@ -76,21 +81,93 @@ const setArticulosToTable = (articulos) => {
     let tdSpanReserva = document.createElement("span")
     tdSpanReserva.setAttribute("class", "badge badge-pill badge-success  custom-badge-reserva")
     let tdStrongReserva = document.createElement("strong")
-    tdStrongReserva.innerText = articulo.reserva.toString()
+    tdStrongReserva.innerText = articulo.reserva
     tdSpanReserva.appendChild(tdStrongReserva)
     tdReserva.appendChild(tdSpanReserva)
     tr.appendChild(tdReserva)
 
     let tdBotones = document.createElement("td")
     tdBotones.setAttribute("class", "text-center")
-    let tdDivBotones = document.createElement("td")
+
+    let tdDivBotones = document.createElement("div")
     tdDivBotones.setAttribute("class", "btn-container")
-    tdBotones.appendChild()
+    tdBotones.appendChild(tdDivBotones)
 
+    let tdDivBtnVer = document.createElement("button")
+    tdDivBtnVer.setAttribute("class", "btnVer btn-custom-size2 alert alert-primary btn-alert-primary")
+    // tdDivBtnVer.setAttribute("data-toggle", "modal")
+    // tdDivBtnVer.setAttribute("data-target", "#ver-info")
+    let tdIconVer = document.createElement("i")
+    tdIconVer.setAttribute("class", "far fa-eye")
+    tdDivBtnVer.appendChild(tdIconVer)
+    tdDivBotones.appendChild(tdDivBtnVer)
 
+    let tdDivBtnEdit = document.createElement("button")
+    tdDivBtnEdit.setAttribute("class", "btnEdit btn-custom-size2 alert alert-warning btn-alert-warning")
+    let tdIconEdit = document.createElement("i")
+    tdIconEdit.setAttribute("class", "fas fa-pen")
+    tdDivBtnEdit.appendChild(tdIconEdit)
+    tdDivBotones.appendChild(tdDivBtnEdit)
+
+    let tdDivBtnDel = document.createElement("button")
+    tdDivBtnDel.setAttribute("class", "btn-custom-size2 alert alert-danger btn-alert-danger list-delete")
+    let tdIconDel = document.createElement("i")
+    tdIconDel.setAttribute("class", "fas fa-trash-alt")
+    tdDivBtnDel.appendChild(tdIconDel)
+    tdDivBotones.appendChild(tdDivBtnDel)
+
+    tr.appendChild(tdBotones)
+    bodyArticulos.appendChild(tr)
 
 
   }
+
+  addListeners()
+
+
+}
+
+const addListeners = () => {
+
+  $(".btnVer").click(function (e) {
+    console.log("ver Articulo");
+
+  });
+
+  $(".list-delete").click(function (e) {
+    swal({
+      title: "Estas seguro?",
+      text: "El item va a ser eliminado",
+      icon: "warning",
+      buttons: ["Cancelar", "Eliminar"],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          //borrar elemento
+          swal({
+            title: "Eliminado",
+            text: "El item fue correctamente eliminado",
+            icon: "success",
+          });
+        } else {
+          swal("El item no fue eliminado!");
+        }
+      });
+
+  });
+
+
+
+  $("#articulos").on("click", ".btnEdit", function () {
+    let currentRow = $(this).closest("tr");
+    let idP = currentRow.find("td:eq(0)").text()
+    console.log(idP);
+  })
+
+
+
+
 
 
 }
@@ -113,8 +190,8 @@ const configTable = () => {
     ], // Opciones de filas por página
     pageLength: 5, // Muestra 5 entradas por defecto
     columnDefs: [
-      { target: 0, visible: false },
-      { targets: [1, 2, 3, 4, 5, 6, 7] },
+
+      { targets: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
       { orderable: false, targets: [1, 7] },
     ],
     order: [[0, "asc"]],
@@ -133,6 +210,7 @@ const configTable = () => {
       },
     },
   });
+  tableArticulos.column(0).visible(false);
 }
 
 
