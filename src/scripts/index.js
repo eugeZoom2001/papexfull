@@ -138,20 +138,23 @@ const setArticulosToTable = (articulos) => {
 };
 
 const addListeners = () => {
-  $(".btnVer").click(function (e) {
+  $("#tbodyArticulos td .btnVer").click(function (e) {
     console.log("ver Articulo");
   });
 
-  $(".list-delete").click(function (e) {
+  $("#tbodyArticulos td .list-delete").click(function (e) {
+    var currentRow = $(this).closest("tr");
+    var data = $("#articulos").DataTable().row(currentRow).data();
+    const id = data[0];
     swal({
       title: "Estas seguro?",
       text: "El item va a ser eliminado",
       icon: "warning",
       buttons: ["Cancelar", "Eliminar"],
       dangerMode: true,
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
       if (willDelete) {
-        //borrar elemento
+        await deleteArticulo(id);
         swal({
           title: "Eliminado",
           text: "El item fue correctamente eliminado",
@@ -167,14 +170,14 @@ $("#articulos").on("click", ".btnEdit", function (e) {
   e.preventDefault();
   var currentRow = $(this).closest("tr");
   var data = $("#articulos").DataTable().row(currentRow).data();
-  //console.log(data[0]); // id
-  console.log(data); // data
+  const id = data[0];
+  const params = new URLSearchParams();
+  params.append("id", id);
+  const queryString = params.toString();
+  const urlAddArticulo = "../pages/form-addon.html";
+  const url = `${urlAddArticulo}?${queryString}`;
+  window.location.href = url;
 });
-
-const checkQuiebre = (params) => {
-  var quiebre = new bootstrap.Modal(document.getElementById("quiebre"));
-  //quiebre.show();
-};
 
 const configTable = () => {
   $("#articulos").DataTable({
@@ -209,6 +212,20 @@ const configTable = () => {
   });
 };
 
-function redirectToPage() {
-  window.location.href = "pages/form-addon.html"; // Cambia esta URL según tu estructura de proyecto
+const deleteArticulo = async (idBorrar) => {
+  await axios.delete(`${urlBase}/${idBorrar}`);
+  redirectToPage("../../index.html");
+};
+
+const checkQuiebre = (params) => {
+  var quiebre = new bootstrap.Modal(document.getElementById("quiebre"));
+  //quiebre.show();
+};
+
+// function redirectToPage() {
+//   window.location.href = "pages/form-addon.html"; // Cambia esta URL según tu estructura de proyecto
+// }
+
+function redirectToPage(url) {
+  window.location.href = url;
 }

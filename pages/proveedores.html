@@ -1,770 +1,570 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>PapexFull</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="shortcut icon" href="../img/logpico.png">
 
-        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-        
-       <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
-        <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
-        <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-        <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
-        <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
-        <link rel="stylesheet" href="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
-        <link rel="stylesheet" href="../plugins/mohithg-switchery/dist/switchery.min.css">
-        <link rel="stylesheet" href="../dist/css/theme.min.css">
-        <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
-        <link rel="stylesheet" href="../plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-         <style>
-        .custom-badge2 {
-    font-size: 14px;  /* Tamaño del texto dentro del badge */
-    width: 450px;      /* Ancho del badge */
-    height: 30px;     /* Alto del badge */
-    line-height: 30px; /* Altura de la línea para centrar el texto verticalmente */
-    text-align: center; /* Alineación del texto al centro */
-    padding: 0;       /* Elimina el padding predeterminado */
-    border-radius: 2%; /* Mantiene el borde redondeado */
-           }
-     </style>
-    
-  
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>PapexFull</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
+    <link rel="shortcut icon" href="../img/logpico.png">
 
-    <body>
-        <!--[if lt IE 8]>
+
+
+    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
+    <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="../plugins/mohithg-switchery/dist/switchery.min.css">
+    <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.css">
+
+    <style>
+        /* Estilo personalizado para el encabezado de la tabla */
+        #example thead th {
+            background-color: #dddcdc;
+            /* Cambia este color a tu preferencia */
+            color: #000;
+            /* Color del texto del encabezado */
+            font-weight: bold;
+        }
+
+        /* Estilo personalizado para las filas de la tabla */
+        #example tbody tr {
+            position: relative;
+            /* Necesario para posicionar la sombra */
+        }
+
+        #example tbody tr:hover {
+            background-color: #f1f1f1;
+            /* Cambia el color de fondo de la fila al pasar el cursor sobre ella */
+        }
+
+        /* Aplicar sombra entre las filas */
+        #example tbody tr:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+            /* Línea de separación entre filas */
+        }
+
+        #example tbody tr {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Sombra en las filas */
+            transition: box-shadow 0.3s ease;
+            /* Transición suave para el efecto de sombra */
+        }
+
+        /* Efecto de sombra al pasar el cursor sobre la fila */
+        #example tbody tr:hover {
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            /* Sombra más intensa al pasar el cursor */
+        }
+
+        .imagen-tamano {
+            width: 120px;
+            /* Tamaño absoluto en píxeles */
+            height: 80px;
+            /* Tamaño absoluto en píxeles */
+            object-fit: contain;
+            /* Opcional: Ajusta cómo se ajusta la imagen dentro del contenedor */
+        }
+
+        .custom-badge-datos {
+            font-size: 13px;
+            /* Tamaño del texto dentro del badge */
+            width: 150px;
+            /* Ancho del badge */
+            height: 30px;
+            /* Alto del badge */
+            line-height: 30px;
+            /* Altura de la línea para centrar el texto verticalmente */
+            text-align: center;
+            /* Alineación del texto al centro */
+            padding: 0;
+            /* Elimina el padding predeterminado */
+            border-radius: 2%;
+            /* Mantiene el borde redondeado */
+            background-color: #a6a6a6;
+            /* Color de fondo del badge (ejemplo: naranja) */
+            color: #fff;
+        }
+
+        /* Estilo personalizado para el botón */
+        .btn-custom-size2 {
+            padding: 6px 10px;
+            /* Ajusta el padding para el tamaño del botón */
+            font-size: 16px;
+            /* Ajusta el tamaño de la fuente */
+            border-radius: 4px;
+            /* Ajusta el radio del borde, si es necesario */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            /* Cambia el cursor al pasar sobre el botón */
+
+        }
+
+        /* Estilo para el icono dentro del botón */
+        .btn-custom-size i {
+            font-size: 18px;
+            /* Ajusta el tamaño del icono dentro del botón */
+        }
+
+        /* Contenedor de botones */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            /* Asegura que los botones siempre estén en una sola fila */
+            gap: 4px;
+            /* Espaciado entre los botones */
+            margin-top: 15px;
+            /* Ajusta la distancia desde el borde superior aquí */
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="wrapper">
-                        <header class="header-top" header-theme="dark">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between">
-                        <div class="top-menu d-flex align-items-center">
-                            <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-                            <div class="header-search">
-                                <div class="input-group">
-                                    <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
-                                </div>
-                            </div>
-                            <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
-                        </div>
-                        <div class="top-menu d-flex align-items-center">
-                            <div class="dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
-                                <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
-                                    <h4 class="header">Notificaciones</h4>
-                                    <div class="notifications-wrap">
-                                        <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
-                                            <span class="d-flex">
-                                                <i class="ik ik-message-square"></i> 
-                                            </span>
-                                            <span class="media-body">
-                                                <span class="heading-font-family media-heading">Te hicieron una pregunta</span> 
-                                                <span class="media-content">Hola queria saber ...</span>
-                                            </span>
-                                        </a>
-                                        <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
-                                            <span class="d-flex">
-                                                <i class="ik ik-dollar-sign"></i> 
-                                            </span>
-                                            <span class="media-body">
-                                                <span class="heading-font-family media-heading">Venta producto</span> 
-                                                <span class="media-content">Soporte TV ...</span>
-                                            </span>
-                                        </a>
-                                        <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
-                                            <span class="d-flex">
-                                                <i class="ik ik-message-square"></i> 
-                                            </span>
-                                            <span class="media-body">
-                                                <span class="heading-font-family media-heading">Te hicieron una pregunta</span> 
-                                                <span class="media-content">Lo tenes en color azul ...</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="footer"><a href="javascript:void(0);"></a></div>
-                                </div>
-                            </div>
-                            
+    <div class="wrapper">
+        <header class="header-top" header-theme="dark">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                    <div class="top-menu d-flex align-items-center">
+                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
 
-                            
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" width="22" height="22" src="../img/user.png" alt=""></a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href=""><i class="ik ik-user dropdown-icon"></i> Maria Perez</a>
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="ik ik-settings dropdown-icon"></i> Cambiar Contraseña</a>
-                                   
-    
-                                    <a class="dropdown-item" href="../pages/login.html"><i class="ik ik-power dropdown-icon"></i> Salir</a>
+                        <button type="button" id="navbar-fullscreen" class="nav-link"><i
+                                class="ik ik-maximize"></i></button>
+                    </div>
+                    <div class="top-menu d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
+                            <div class="dropdown-menu dropdown-menu-right notification-dropdown"
+                                aria-labelledby="notiDropdown">
+                                <h4 class="header">Notificaciones</h4>
+                                <div class="notifications-wrap">
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-message-square"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Te hicieron una
+                                                pregunta</span>
+                                            <span class="media-content">Hola queria saber ...</span>
+                                        </span>
+                                    </a>
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-dollar-sign"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Venta producto</span>
+                                            <span class="media-content">Soporte TV ...</span>
+                                        </span>
+                                    </a>
+                                    <a href="https://www.mercadolibre.com.ar/" target="_blank" class="media">
+                                        <span class="d-flex">
+                                            <i class="ik ik-message-square"></i>
+                                        </span>
+                                        <span class="media-body">
+                                            <span class="heading-font-family media-heading">Te hicieron una
+                                                pregunta</span>
+                                            <span class="media-content">Lo tenes en color azul ...</span>
+                                        </span>
+                                    </a>
                                 </div>
+                                <div class="footer"><a href="javascript:void(0);"></a></div>
                             </div>
-
                         </div>
+
+
+
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img class="img-fluid" width="22" height="22"
+                                    src="../img/user.png" alt=""></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href=""><i class="ik ik-user dropdown-icon"></i> Maria
+                                    Perez</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#exampleModalCenter"><i class="ik ik-settings dropdown-icon"></i>
+                                    Cambiar Contraseña</a>
+
+
+                                <a class="dropdown-item" href="../pages/login.html"><i
+                                        class="ik ik-power dropdown-icon"></i> Salir</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </header>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
-                                     <div class="modal-dialog modal-dialog-centered" role="document">
-                                     <div class="modal-content">
-                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterLabel">Cambiar Contraseña</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                     </div>
-                                    <div class="modal-body">
-                                    <div class="form-group">
-                                                <label for="exampleInputPassword1">Ingresa tu contraseña actual</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-                                            </div>
-                                     
-                                     <div class="form-group">
-                                                <label for="exampleInputPassword1">Ingresa la nueva contraseña</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-                                            </div>
-                                     <div class="form-group">
-                                                <label for="exampleInputPassword1">Repeti la nueva contraseña</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
-                                            </div>    
-                                    </div>           
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-success">Guardar Cambios</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                              
-
-            <div class="page-wrap">
-                <div class="app-sidebar colored">
-                    <div class="sidebar-header">
-                        <a class="header-brand" href="index.html">
-                            <a href="../index.html"><img class="img-fluid" width="140" height="92" src="../img/logpico2.png" alt=""></a>
-                            
-                            <span class="text"></span>
-                        </a>
-                        <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon hidden"></i></button>
-                        <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
-                    </div>
-                    
-                    <div class="sidebar-content">
-                        <div class="nav-container">
-                            <nav id="main-menu-navigation" class="navigation-main">
-                                <br>
-                                
-                                <div class="nav-item active">
-                                    <a href="../index.html"><i class="ik ik-edit"></i><span>Stock de productos</span></a>
-                                </div>
-                                <div class="nav-item">
-                                    <a href="../pages/form-addon.html"><i class="ik ik-save"></i><span>Gestion de Articulos</span></a>
-                                </div>
-								<div class="nav-item">
-                                <a href="../pages/ventas.html"><i class="fas fa-hand-holding-usd"></i><span>Gestion de Ventas</span></a>
-                            </div>
-                                <div class="nav-item has-sub">
-                                    <a href="javascript:void(0)"><i class="fas fa-barcode"></i><span>Generar nuevo codigo</span></a>
-                                    <div class="submenu-content">
-                                        <a href="../pages/calendar.html"  class="menu-item">Codigo de barras</a>
-                                        <a href="../pages/codigoqr.html" class="menu-item">Codigo QR</a>
-                                        
-                                    </div>
-                                </div>
-                                <div class="nav-lavel">Proveedores</div>
-                                <div class="nav-item has-sub">
-                                    <a href="#"><i class="ik ik-user-plus"></i><span>Lista de Proveedores</span></a>
-                                    <div class="submenu-content">
-                                        <a href="#" class="menu-item">
-                                        Listar/editar/eliminar</a>
-                                        <a href="../pages/nuevoprov.html" class="menu-item">
-                                        Alta nuevo Proveedor</a>
-                                        
-                                    </div>
-                                </div>
-                               
-                                
-                                
-                              
-                                
-                                
-
-                               
-                                
-                                
-
-                                <div class="nav-lavel">Informacion</div>
-                                <div class="nav-item has-sub">
-                                    <a href="#"><i class="ik ik-pie-chart"></i><span>Graficos</span></a>
-                                    <div class="submenu-content">
-                                        <a href="../pages/charts-chartist.html" class="menu-item active">Lista de graficos</a>
-                                        <a href="../pages/charts-flot.html" class="menu-item">Graficos en cascada</a>
-                                        <a href="../pages/charts-knob.html" class="menu-item">Manejo de graficos</a>
-                                        <a href="../pages/charts-amcharts.html" class="menu-item">Graficos interactivos</a>
-                                    </div>
-                                </div>
-
-                                
-                                
-                                
-
-                                
-
-                                
-                               
-                                
-                               
-                               
-                               
-                               
-                               
-                               
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                 
-                <div class="main-content">
-                    <div class="container-fluid">
-                   <div class="page-header">
-                            <div class="row align-items-end">
-                                <div class="col-lg-8">
-                                    <div class="page-header-title">
-                                        <i class="fas fa-user-tag bg-blue"></i>
-                                        <div class="d-inline">
-                                            <h5>Lista de proveedores</h5>
-                                            <span>Podes ver detalles de proveedor, editar, eliminar</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                   <div class="row">
-
-                            <div class="col-md-12">
-                                <div class="card">
-                                    
-                                    <div class="card-body">
-                                        <table id="data_table" class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id interno</th>
-                                                    <th class="nosort">Nombre completo</th>
-                                                    <th>Referente</th>
-                                                    <th>Telefono</th>
-                                                  
-                                                    <th>&nbsp;</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>001</td>
-                                                    <td>Una casa mil hogares</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-													
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>002</td>
-                                                    
-                                                    <td>Otro proveedor</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>003</td>
-                                                    
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>004</td>
-                                                    
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>005</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-												<tr>
-                                                    <td>006</td>
-                                                    <td>Otro proveedor mas</td>
-                                                    <td>Juan Carlos Lopez</td>
-                                                    <td>1127392128 / 45578896 / 1134587841</td>
-                                                    <td>
-                                                        <div class="table-actions">
-                                                            <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
-                                                            <a href="../pages/nuevoprov.html"><i class="ik ik-edit-2"></i></a>
-                                                            <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                </div>
-                <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            </div>
+        </header>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="editLayoutItemLabel"><i class="fas fa-user-tag"></i> Informacion proveedor</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h5 class="modal-title" id="exampleModalCenterLabel">Cambiar Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                     
-                       <ul class="list-group">
+                        <div class="form-group">
+                            <label for="currentPassword">Ingresa tu contraseña actual</label>
+                            <input type="password" class="form-control" id="currentPassword" placeholder="">
+                        </div>
 
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-  ID interno
-    <span class="badge badge-warning badge-pill custom-badge"> 001</span>
-  </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-   Nombre completo
-    <span class="badge badge-secondary badge custom-badge2"> Una casa mil hogares</span>
-  </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-   Referente
-    <span class="badge badge-secondary badge custom-badge2"> Juan Carlos Lopez</span>
-  </li>
-       <li class="list-group-item d-flex justify-content-between align-items-center">
-   Telefonos
-    <span class="badge badge-secondary badge custom-badge2"> 1127392128 / 45578896 / 1134587841</span>
-  </li>
-       <li class="list-group-item d-flex justify-content-between align-items-center">
-   Email
-    <span class="badge badge-secondary badge custom-badge2"> boyle.aglea@example.com / henry.chris@example.com</span>
-  </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-   Direccion
-    <span class="badge badge-secondary badge custom-badge2"> Remedios Escalada San martin 11221</span>
-  </li>
-</ul>
- 
+                        <div class="form-group">
+                            <label for="newPassword">Ingresa la nueva contraseña</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword2">Repeti la nueva contraseña</label>
+                            <input type="password" class="form-control" id="newPassword2" placeholder="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success">Guardar Cambios</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
+        <div class="page-wrap">
+            <div class="app-sidebar colored">
+                <div class="sidebar-header">
+                    <a class="header-brand" href="index.html">
+                        <a href="../index.html"><img class="img-fluid" width="140" height="92" src="../img/logpico2.png"
+                                alt=""></a>
 
-    <br>
-    <br>
-    <div class="form-group col-md-12">
-    <h5><i class="fas fa-comment-dots"></i> Comentarios</h5>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">
+                        <span class="text"></span>
+                    </a>
+                    <button type="button" class="nav-toggle"><i data-toggle="expanded"
+                            class="ik ik-toggle-right toggle-icon hidden"></i></button>
+                    <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="nav-container">
+                        <nav id="main-menu-navigation" class="navigation-main">
+                            <br>
+
+                            <div class="nav-item active">
+                                <a href="../index.html"><i class="ik ik-edit"></i><span>Stock de productos</span></a>
+                            </div>
+                            <div class="nav-item">
+                                <a href="../pages/form-addon.html"><i class="ik ik-save"></i><span>Gestion de
+                                        Articulos</span></a>
+                            </div>
+                            <div class="nav-item">
+                                <a href="../pages/ventas.html"><i class="fas fa-hand-holding-usd"></i><span>Gestion de
+                                        Ventas</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="javascript:void(0)"><i class="fas fa-barcode"></i><span>Generar nuevo
+                                        codigo</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/calendar.html" class="menu-item">Codigo de barras</a>
+                                    <a href="../pages/codigoqr.html" class="menu-item">Codigo QR</a>
+
+                                </div>
+                            </div>
+                            <div class="nav-lavel">Proveedores</div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><i class="ik ik-user-plus"></i><span>Lista de Proveedores</span></a>
+                                <div class="submenu-content">
+                                    <a href="#" class="menu-item">
+                                        Listar/editar/eliminar</a>
+                                    <a href="../pages/nuevoprov.html" class="menu-item">
+                                        Alta nuevo Proveedor</a>
+
+                                </div>
+                            </div>
+
+                            <div class="nav-lavel">Informacion</div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><i class="ik ik-pie-chart"></i><span>Graficos</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/charts-chartist.html" class="menu-item active">Lista de
+                                        graficos</a>
+                                    <a href="../pages/charts-flot.html" class="menu-item">Graficos en cascada</a>
+                                    <a href="../pages/charts-knob.html" class="menu-item">Manejo de graficos</a>
+                                    <a href="../pages/charts-amcharts.html" class="menu-item">Graficos interactivos</a>
+                                </div>
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row align-items-end">
+                            <div class="col-lg-8">
+                                <div class="page-header-title">
+                                    <i class="fas fa-dolly-flatbed bg-blue"></i>
+                                    <div class="d-inline">
+                                        <h5>Lista de proveedores</h5>
+                                        <span>Podes ver detalles de proveedor, editar, eliminar</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="container col-12">
+
+
+                        <!-- Tabla con estilos DataTables -->
+                        <table id="example" class="hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;"><i class="fas fa-filter"></i> Id interno</th>
+                                    <th style="text-align: center;"><i class="fas fa-edit"></i> Nombre completo</th>
+                                    <th style="text-align: center;"><i class="fas fa-user-shield"></i> Referente</th>
+                                    <th style="text-align: center;"><i class="fas fa-phone-volume"></i> Telefonos</th>
+                                    <th style="text-align: center;"><i class="fas fa-cog"></i> Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">001</td>
+                                    <td class="text-center">Una casa 1000 hogares</td>
+                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
+                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
+
+                                    <td class="text-center">
+                                        <div class="btn-container">
+                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
+                                                data-toggle="modal" data-target="#editLayoutItem"><i
+                                                    class="far fa-eye"></i></button>
+                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
+                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
+                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
+                                            <button
+                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
+                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
+                              dispara eliminar articulo usa una animacion que se llama list-delete -->
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">001</td>
+                                    <td class="text-center">Una casa 1000 hogares</td>
+                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
+                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
+
+                                    <td class="text-center">
+                                        <div class="btn-container">
+                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
+                                                data-toggle="modal" data-target="#editLayoutItem"><i
+                                                    class="far fa-eye"></i></button>
+                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
+                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
+                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
+                                            <button
+                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
+                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
+                              dispara eliminar articulo usa una animacion que se llama list-delete -->
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-center">001</td>
+                                    <td class="text-center">Una casa 1000 hogares</td>
+                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
+                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
+
+                                    <td class="text-center">
+                                        <div class="btn-container">
+                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
+                                                data-toggle="modal" data-target="#editLayoutItem"><i
+                                                    class="far fa-eye"></i></button>
+                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
+                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
+                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
+                                            <button
+                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
+                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
+                              dispara eliminar articulo usa una animacion que se llama list-delete -->
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog"
+                aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="editLayoutItemLabel"><i class="fas fa-dolly-flatbed"></i>
+                                Informacion proveedor</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <ul class="list-group">
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-filter"></i> ID interno</p>
+                                    <span class="badge badge-warning badge-pill custom-badge"> 001</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-edit"></i> Nombre completo</p>
+                                    <span class="badge badge-secondary badge custom-badge2"> Una casa mil hogares</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-user-shield"></i> Referente</p>
+                                    <span class="badge badge-secondary badge custom-badge2"> Juan Carlos Lopez</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-phone-volume"></i> Telefonos</p>
+                                    <span class="badge badge-secondary badge custom-badge2"> 1127392128 / 45578896 /
+                                        1134587841</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-envelope"></i> Email</p>
+                                    <span class="badge badge-secondary badge custom-badge2"> boyle.aglea@example.com /
+                                        henry.chris@example.com</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <p style="font-size: 12px;"><i class="fas fa-map-marker-alt"></i> Direccion</p>
+                                    <span class="badge badge-secondary badge custom-badge2"> Remedios Escalada San
+                                        martin 11221</span>
+                                </li>
+                            </ul>
+
+
+
+
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="form-group col-md-12">
+                                <h5><i class="fas fa-comment-dots"></i> Comentarios</h5>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">
 Un comentario
 otro comentario
 otro comentario mas
 otro comentario mas
 otro comentario mas
 otro comentario mas</textarea>
-  </div>
+                            </div>
 
 
-
-    
-                      
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="../pages/nuevoprov.html" class="btn btn-primary">Edit</a>
-                        <button type="button" class="btn btn-danger list-delete">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-                <aside class="right-sidebar">
-                    <div class="sidebar-chat" data-plugin="chat-sidebar">
-                        <div class="sidebar-chat-info">
-                            <h6>Chat List</h6>
-                            <form class="mr-t-10">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search for friends ..."> 
-                                    <i class="ik ik-search"></i>
-                                </div>
-                            </form>
                         </div>
-                        <div class="chat-list">
-                            <div class="list-group row">
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Gene Newman">
-                                    <figure class="user--online">
-                                        <img src="../img/users/1.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Gene Newman</span>  <span class="username">@gene_newman</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Billy Black">
-                                    <figure class="user--online">
-                                        <img src="../img/users/2.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Billy Black</span>  <span class="username">@billyblack</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Herbert Diaz">
-                                    <figure class="user--online">
-                                        <img src="../img/users/3.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Herbert Diaz</span>  <span class="username">@herbert</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Sylvia Harvey">
-                                    <figure class="user--busy">
-                                        <img src="../img/users/4.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Sylvia Harvey</span>  <span class="username">@sylvia</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item active" data-chat-user="Marsha Hoffman">
-                                    <figure class="user--busy">
-                                        <img src="../img/users/5.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Marsha Hoffman</span>  <span class="username">@m_hoffman</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Mason Grant">
-                                    <figure class="user--offline">
-                                        <img src="../img/users/1.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Mason Grant</span>  <span class="username">@masongrant</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Shelly Sullivan">
-                                    <figure class="user--offline">
-                                        <img src="../img/users/2.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Shelly Sullivan</span>  <span class="username">@shelly</span></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-
-                <div class="chat-panel" hidden>
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between">
-                            <a href="javascript:void(0);"><i class="ik ik-message-square text-success"></i></a>  
-                            <span class="user-name">John Doe</span> 
-                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="widget-chat-activity flex-1">
-                                <div class="messages">
-                                    <div class="message media reply">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="../img/users/3.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Epic Cheeseburgers come in all kind of styles.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="../img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Cheeseburgers make your knees weak.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media reply">
-                                        <figure class="user--offline">
-                                            <a href="#">
-                                                <img src="../img/users/5.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Cheeseburgers will never let you down.</p>
-                                            <p>They'll also never run around or desert you.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="../img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>A great cheeseburger is a gastronomical event.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media reply">
-                                        <figure class="user--busy">
-                                            <a href="#">
-                                                <img src="../img/users/5.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>There's a cheesy incarnation waiting for you no matter what you palete preferences are.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="../img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>If you are a vegan, we are sorry for you loss.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form action="javascript:void(0)" class="card-footer" method="post">
-                            <div class="d-flex justify-content-end">
-                                <textarea class="border-0 flex-1" rows="1" placeholder="Type your message here"></textarea>
-                                <button class="btn btn-icon" type="submit"><i class="ik ik-arrow-right text-success"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <footer class="footer">
-                    <div class="w-100 clearfix">
-                        <span class="float-none float-sm-right mt-1 mt-sm-0 text-cente">Desarrollado por Tecno <i class="fa fa-star text-primary"></i> Squad para Papex<i class="text-danger">F</i>ull</span>
-                        
-                    </div>
-                </footer>
-            </div>
-        </div>
-        
-        
-        
-
-        <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="quick-search">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 ml-auto mr-auto">
-                                    <div class="input-wrap">
-                                        <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
-                                        <i class="ik ik-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body d-flex align-items-center">
-                        <div class="container">
-                            <div class="apps-wrap">
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
-                                </div>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <a href="../pages/nuevoprov.html" class="btn btn-primary">Editar</a>
+                            <button type="button" class="btn btn-danger list-delete">Borrar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-        <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
-        <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-         <script src="../plugins/select2/dist/js/select2.min.js"></script>
-        <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
-        <script src="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-        <script src="../plugins/jquery.repeater/jquery.repeater.min.js"></script>
-        <script src="../plugins/mohithg-switchery/dist/switchery.min.js"></script>
-        <script src="../dist/js/theme.min.js"></script>
-        <script src="../js/datatables.js"></script>
-       <script src="../plugins/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="../plugins/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="../js/layouts.js"></script>
+            <aside class="right-sidebar">
 
-         
-        
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-    </body>
+            </aside>
+
+            <div class="chat-panel" hidden>
+
+            </div>
+            <footer class="footer">
+                <div class="w-100 clearfix">
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-cente">Desarrollado por Tecno <i
+                            class="fa fa-star text-primary"></i> Squad para Papex<i class="text-danger">F</i>ull</span>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../plugins/select2/dist/js/select2.min.js"></script>
+    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../plugins/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="../plugins/mohithg-switchery/dist/switchery.min.js"></script>
+    <script src="../dist/js/theme.min.js"></script>
+
+    <script src="../plugins/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/layouts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+
+
+
+    <script>
+        function redirectToPage() {
+            window.location.href = 'nuevoprov.html'; // Cambia esta URL según tu estructura de proyecto
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]], // Opciones de filas por página
+                "pageLength": 5, // Muestra 5 entradas por defecto
+                columnDefs: [
+                    { targets: [0, 1, 2, 3, 4] },
+                    { orderable: false, targets: [4] },
+                ],
+                "order": [[1, 'asc']],
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ entradas",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                    "infoFiltered": "(filtrado de _MAX_ entradas totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": ">>",
+                        "previous": "<<"
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
 </html>

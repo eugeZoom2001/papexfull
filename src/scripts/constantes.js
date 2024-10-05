@@ -5,11 +5,9 @@ const urlBase = "http://localhost:3000/api/articulos";
 const urlBarras = `${urlBase}/barras`;
 //{base}/?id   -obtener , actualizar y borrar articulos por id
 
-const urlByArtId = `${urlBase}/`; // -obtener , actualizar y borrar articulos por id
-
 // Proveedores
 
 const urlProveedores = "http://localhost:3000/api/proveedores";
 
 // imagenes articulos
-const urlImg = "http://localhost:3000"
+const urlImg = "http://localhost:3000";

@@ -12,62 +12,63 @@ let prov_actual = null;
 let stock_actual = 0;
 let sku_actual = null;
 let formData = null;
-let isEdit = false;
+let proveedores_sku = new Set();
 const files = document.getElementById("file");
 
 $(document).ready(async function () {
-  // me fijo si viene de edit
-  checkQuery();
-  if (!isEdit) {
-    $("#inputSku").click(function (e) {
-      $("#inputSku").val("");
-    });
+  $("#inputSku").click(function (e) {
+    $("#inputSku").val("");
+  });
 
-    $("#descripcion").click(function (e) {
-      $("#descripcion").val("");
-    });
+  $("#descripcion").click(function (e) {
+    $("#descripcion").val("");
+  });
 
-    $("#cantidad").click(function (e) {
-      $("#cantidad").val("");
-    });
+  $("#cantidad").click(function (e) {
+    $("#cantidad").val("");
+  });
 
-    $("#inputBarras").change(async function (e) {
-      if ($("#inputBarras").val()) {
-        $("#inputSku").focus();
-        resultSku = await getSkus();
-        if (resultSku) {
-          const { result, data } = resultSku;
-          getDataSkus(data);
-        } else console.log("error");
-      }
-    });
+  $("#inputBarras").change(async function (e) {
+    if ($("#inputBarras").val()) {
+      $("#inputSku").focus();
+      resultSku = await getSkus();
+      if (resultSku) {
+        const { result, data } = resultSku;
+        getDataSkus(data);
+      } else console.log("error");
+    }
+  });
+  //proveedores = await cargarProveedores();
 
-    $("#inputSku").on("change", async function (e) {
-      var opt = $('option[value="' + $(this).val() + '"]');
-      sku_actual = e.target.value;
-      console.log(opt.length ? opt.attr("id") : null);
-      let id = opt.length ? opt.attr("id") : null;
-      let prov = opt.length ? opt.attr("prov") : null;
-      let stock = opt.length ? opt.attr("stock") : "0";
-      let desc = opt.length ? opt.attr("desc") : null;
-      if (!id) {
-        esAlta = true;
-      } else {
-        esAlta = false;
-        ar_idActual = Number(id);
-        prov_actual = Number(prov);
-        stock_actual = Number(stock);
-        $("#stockActual").val(stock_actual);
-        $("#descripcion").val(desc);
-      }
-      $("#descripcion").focus();
-      //console.log("sku", sku, "id", id, "prov_actual ", prov);
-      await getProveedores();
-    });
-  }
-
+  $("#inputSku").on("change", async function (e) {
+    var opt = $('option[value="' + $(this).val() + '"]');
+    sku_actual = e.target.value;
+    console.log(opt.length ? opt.attr("id") : null);
+    let id = opt.length ? opt.attr("id") : null;
+    let prov = opt.length ? opt.attr("prov") : null;
+    let stock = opt.length ? opt.attr("stock") : "0";
+    let desc = opt.length ? opt.attr("desc") : null;
+    if (!id) {
+      esAlta = true;
+    } else {
+      esAlta = false;
+      ar_idActual = Number(id);
+      prov_actual = Number(prov);
+      stock_actual = Number(stock);
+      $("#stockActual").val(stock_actual);
+      $("#descripcion").val(desc);
+    }
+    $("#descripcion").focus();
+    //console.log("sku", sku, "id", id, "prov_actual ", prov);
+    await getProveedores();
+  });
   $("#cancelButton").click(function (e) {
     document.location.href = "../index.html";
+  });
+
+  loadButton.on("click", (e) => {
+    console.log("clear data");
+    $("input").val("");
   });
 
   $("#formArticulo").submit(function (e) {
@@ -194,47 +195,6 @@ async function putArticulo() {
   }
   closeSpinner();
 }
-
-const checkQuery = async () => {
-  const queryString = window.location.search;
-  // console.log(queryString);
-  const urlParams = new URLSearchParams(queryString);
-
-  if (urlParams.has("id")) {
-    isEdit = true;
-    const id = urlParams.get("id");
-    console.log("id from Add-Form", id);
-    await getArticuloFromId(id);
-  } else {
-    console.log("viene de Alta");
-  }
-};
-
-const getArticuloFromId = async (idArticulo) => {
-  axios
-    .get(`${urlBase}/${idArticulo}`)
-    .then(async function (response) {
-      // manejar respuesta exitosa
-      if (response.data.result === "ok") {
-        const articulo = response.data.data;
-        console.log(articulo);
-        const { barras, descripcion, id, id_proveedor, stock, sku } = articulo;
-
-        ar_idActual = id;
-        prov_actual = id_proveedor;
-        sku_actual = sku;
-        $("#descripcion").val(descripcion);
-        $("#inputSku").val(sku);
-        $("#inputBarras").val(barras);
-        $("#stockActual").val(stock);
-        await getProveedores();
-      }
-    })
-    .catch(function (error) {
-      console.log("error"); // manejar error
-      console.log(error);
-    });
-};
 
 const openSpinner = () => {
   $("#overlay").show(); // Mostrar el overlay
