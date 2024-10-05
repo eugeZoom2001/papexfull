@@ -30,12 +30,12 @@ const getForm = async () => {
   formData.append("telefono", $("#idTelefono").val());
   formData.append("direccion", $("#idDireccion").val());
   formData.append("email", $("#idEmail").val());
-  sendData;
+  sendData(formData);
 };
 
-const sendData = () => {
+const sendData = (formData) => {
   if (!isEdit) postData(formData);
-  else putData();
+  else putData(formData);
 };
 
 const postData = async (formData) => {
