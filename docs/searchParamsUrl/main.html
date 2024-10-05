@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>main</title>
+</head>
+
+<body>
+        <button id="buttonMain">Tocar</button>
+        <script>
+                //const urlOtra = "otra.html"
+                //const nombre = "euge"
+                //const navigate = () => {
+                //       //window.location.href = "otra.html?nombre=eugenio&edad=52";
+                //        window.location.href = `otra.html?nombre=${nombre}`;
+                //}
+                const urlOtra = "otra.html"
+
+                const navigate = () => {
+                        const params = new URLSearchParams();
+                        params.append('nombre', 'euge');
+                        params.append('edad', '52');
+                        const queryString = params.toString();
+                        const url = `${urlOtra}?${queryString}`;
+                        window.location.href = url;
+
+                }
+
+                let boton = document.getElementById("buttonMain")
+                boton.addEventListener("click", navigate)    
+        </script>
+</body>
+
+</html>

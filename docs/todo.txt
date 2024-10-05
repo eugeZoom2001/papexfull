@@ -1,1 +1,6 @@
-acomodar proveedores segun sku
+
+proveedores
+alta - mod - baja
+-fetch datos
+- add listeners
+- add listener boton borrar (ver index.js)

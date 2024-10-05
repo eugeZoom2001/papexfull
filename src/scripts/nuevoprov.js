@@ -1,10 +1,22 @@
+let isEdit = false;
+prov_actual = null;
+
 $(document).ready(function () {
+  checkQuery();
+
   $("#formProv").submit(function (e) {
     e.preventDefault();
     getForm();
   });
-  $("input").click(function (e) {
-    e.target.value = "";
+  if (!isEdit) {
+    $("input").click(function (e) {
+      e.target.value = "";
+    });
+  }
+
+  $(".cancelBtn").click(() => {
+    console.log("cancel");
+    window.location.href = "../pages/proveedores.html";
   });
 });
 
@@ -15,9 +27,10 @@ const getForm = async () => {
   formData.append("telefono", $("#idTelefono").val());
   formData.append("direccion", $("#idDireccion").val());
   formData.append("email", $("#idEmail").val());
-  sendData(formData);
+  if (!isEdit) postData(formData);
+  else putData();
 };
-const sendData = async (formData) => {
+const postData = async (formData) => {
   axios({
     method: "post",
     url: urlProveedores,
@@ -26,9 +39,40 @@ const sendData = async (formData) => {
   })
     .then(function (response) {
       console.log(response);
-      $("input").val('');
+      $("input").val("");
     })
     .catch(function (response) {
       console.log(response);
     });
+};
+
+const putData = () => {
+  axios({
+    method: "put",
+    url: `${urlProveedores}/${prov_actual}`,
+    data: formData,
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      console.log(response);
+      $("input").val("");
+    })
+    .catch(function (response) {
+      console.log(response);
+    });
+};
+
+const checkQuery = async () => {
+  const queryString = window.location.search;
+  // console.log(queryString);
+  const urlParams = new URLSearchParams(queryString);
+
+  if (urlParams.has("id")) {
+    isEdit = true;
+    const id = urlParams.get("id");
+    prov_actual = id;
+    console.log("id from nuevo prov", id);
+  } else {
+    console.log("viene de Alta");
+  }
 };

@@ -28,7 +28,7 @@
 
     <style>
         /* Estilo personalizado para el encabezado de la tabla */
-        #example thead th {
+        #proveedores thead th {
             background-color: #dddcdc;
             /* Cambia este color a tu preferencia */
             color: #000;
@@ -37,23 +37,23 @@
         }
 
         /* Estilo personalizado para las filas de la tabla */
-        #example tbody tr {
+        #proveedores tbody tr {
             position: relative;
             /* Necesario para posicionar la sombra */
         }
 
-        #example tbody tr:hover {
+        #proveedores tbody tr:hover {
             background-color: #f1f1f1;
             /* Cambia el color de fondo de la fila al pasar el cursor sobre ella */
         }
 
         /* Aplicar sombra entre las filas */
-        #example tbody tr:not(:last-child) {
+        #proveedores tbody tr:not(:last-child) {
             border-bottom: 1px solid #ddd;
             /* Línea de separación entre filas */
         }
 
-        #example tbody tr {
+        #proveedores tbody tr {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             /* Sombra en las filas */
             transition: box-shadow 0.3s ease;
@@ -61,7 +61,7 @@
         }
 
         /* Efecto de sombra al pasar el cursor sobre la fila */
-        #example tbody tr:hover {
+        #proveedores tbody tr:hover {
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             /* Sombra más intensa al pasar el cursor */
         }
@@ -338,7 +338,7 @@
 
 
                         <!-- Tabla con estilos DataTables -->
-                        <table id="example" class="hover" style="width:100%">
+                        <table id="proveedores" class="hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th style="text-align: center;"><i class="fas fa-filter"></i> Id interno</th>
@@ -513,10 +513,11 @@ otro comentario mas</textarea>
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
     <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
     <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
     <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
     <script src="../plugins/select2/dist/js/select2.min.js"></script>
     <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
@@ -527,44 +528,14 @@ otro comentario mas</textarea>
 
     <script src="../plugins/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/layouts.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="../plugins/screenfull/dist/screenfull.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="../src/scripts/constantes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script src="../src/scripts/proveedores.js"></script>
 
 
-
-    <script>
-        function redirectToPage() {
-            window.location.href = 'nuevoprov.html'; // Cambia esta URL según tu estructura de proyecto
-        }
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#example').DataTable({
-                "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]], // Opciones de filas por página
-                "pageLength": 5, // Muestra 5 entradas por defecto
-                columnDefs: [
-                    { targets: [0, 1, 2, 3, 4] },
-                    { orderable: false, targets: [4] },
-                ],
-                "order": [[1, 'asc']],
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ entradas",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                    "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                    "infoFiltered": "(filtrado de _MAX_ entradas totales)",
-                    "search": "Buscar:",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": ">>",
-                        "previous": "<<"
-                    }
-                }
-            });
-
-        });
-    </script>
 </body>
 
 </html>
