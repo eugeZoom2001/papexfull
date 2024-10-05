@@ -7,7 +7,21 @@ const init = async () => {
   addListeners();
 };
 
-const addListeners = () => {};
+const addListeners = () => {
+  $("#proveedores .btnEdit").click((e) => {
+    console.log("edito proveedor");
+  });
+  $("#proveedores .btnDelete").click((e) => {
+    console.log("borro proveedor");
+  });
+  $("#proveedores .btnVer").click((e) => {
+    var verProv = new bootstrap.Modal(
+      document.getElementById("modalProveedor")
+    );
+    verProv.show();
+    //console.log("abroProveedor proveedor");
+  });
+};
 
 const configTable = () => {
   $("#proveedores").DataTable({

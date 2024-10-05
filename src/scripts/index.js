@@ -139,7 +139,10 @@ const setArticulosToTable = (articulos) => {
 
 const addListeners = () => {
   $("#tbodyArticulos td .btnVer").click(function (e) {
-    console.log("ver Articulo");
+    let verArticulo = new bootstrap.Modal(
+      document.getElementById("modalArticulo")
+    );
+    verArticulo.show();
   });
 
   $("#tbodyArticulos td .list-delete").click(function (e) {

@@ -357,14 +357,16 @@
 
                                     <td class="text-center">
                                         <div class="btn-container">
-                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
+                                            <button
+                                                class="btnVer btn-custom-size2 alert alert-primary btn-alert-primary"
                                                 data-toggle="modal" data-target="#editLayoutItem"><i
                                                     class="far fa-eye"></i></button>
                                             <!-- este abre el modal id= ver-info con los datos del articulo -->
-                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
-                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
                                             <button
-                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
+                                                class="btnEdit btn-custom-size2 alert alert-warning btn-alert-warning"><i
+                                                    class="fas fa-pen"></i></button>
+                                            <button
+                                                class="btnDelete btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
                                                     class="fas fa-trash-alt"></i></button> <!-- este boton
                               dispara eliminar articulo usa una animacion que se llama list-delete -->
                                         </div>
@@ -383,8 +385,9 @@
                                                 data-toggle="modal" data-target="#editLayoutItem"><i
                                                     class="far fa-eye"></i></button>
                                             <!-- este abre el modal id= ver-info con los datos del articulo -->
-                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
-                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
+                                            <button
+                                                class="btnEdit btn-custom-size2 alert alert-warning btn-alert-warning"><i
+                                                    class="fas fa-pen"></i></button>
                                             <button
                                                 class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
                                                     class="fas fa-trash-alt"></i></button> <!-- este boton
@@ -423,8 +426,8 @@
                 </div>
             </div>
 
-            <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog"
-                aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+            <div id="modalProveedor" class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1"
+                role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

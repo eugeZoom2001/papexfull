@@ -2,6 +2,10 @@ let isEdit = false;
 prov_actual = null;
 
 $(document).ready(function () {
+  init();
+});
+
+const init = () => {
   checkQuery();
 
   $("#formProv").submit(function (e) {
@@ -13,12 +17,11 @@ $(document).ready(function () {
       e.target.value = "";
     });
   }
-
   $(".cancelBtn").click(() => {
     console.log("cancel");
     window.location.href = "../pages/proveedores.html";
   });
-});
+};
 
 const getForm = async () => {
   let formData = new FormData();
@@ -27,9 +30,14 @@ const getForm = async () => {
   formData.append("telefono", $("#idTelefono").val());
   formData.append("direccion", $("#idDireccion").val());
   formData.append("email", $("#idEmail").val());
+  sendData;
+};
+
+const sendData = () => {
   if (!isEdit) postData(formData);
   else putData();
 };
+
 const postData = async (formData) => {
   axios({
     method: "post",
