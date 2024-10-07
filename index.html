@@ -621,7 +621,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
 
 
         <!-- este modal es el que muestra en el margen derecho el detalle de stock id= ver-info -->
-        <div id="modalArticulo" class="modal fade edit-layout-modal" id="ver-info" tabindex="-1" role="dialog"
+        <div class="modal fade edit-layout-modal" id="ver-info" tabindex="-1" role="dialog"
             aria-labelledby="ver-infoLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -630,39 +630,39 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     </div>
-                    <img src="img/9.jpg" alt="..." class="imagen-tamano3">
+                    <img id="mdImg" alt="..." class="imagen-tamano3">
                     <div class="modal-body">
-                        <p class="lead">Soporte Tv Movil 50 Pulgadas Flexible Reforzado Giratorio</p>
+                        <p id="mdDesc" class="lead"></p>
                         <ul class="list-group">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Cantidad en stock
-                                <span
-                                    class="badge badge-pill badge-success custom-badge-verde"><strong>14</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-verde"><strong
+                                        id="mdStock"></strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Cantidad en reserva
-                                <span
-                                    class="badge badge-pill badge-success custom-badge-reserva"><strong>2</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-reserva"><strong
+                                        id="mdReserva"></strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Cantidad de mermas
-                                <span
-                                    class="badge badge-pill badge-success custom-badge-merma"><strong>3</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-merma"><strong
+                                        id="mdMerma"></strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Código de barras
-                                <span
-                                    class="badge badge-pill badge-success custom-badge-datos"><strong>9900012419</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-datos"><strong
+                                        id="mdBarras"></strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Código SKU
-                                <span
-                                    class="badge badge-pill badge-success custom-badge-datos"><strong>78CLA1245A</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-datos"><strong
+                                        id="mdSku"></strong></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Proveedor
-                                <span class="badge badge-pill badge-success custom-badge-datos"><strong>Proveedor
-                                        1</strong></span>
+                                <span class="badge badge-pill badge-success custom-badge-datos"><strong
+                                        id="mdProv"></strong></span>
                             </li>
                         </ul>
                         <div class="form-group">
@@ -772,7 +772,8 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                     <br>
                                     <p>• Al ingresar una <code>MERMA</code> se resta un artículo al stock</p>
                                     <button type="button" class="btn btn-success btn-fw"
-                                        onclick="showSuccessToast()">Ingresar nueva merma</button>
+                                        onclick="showSuccessToast()">Ingresar
+                                        nueva merma</button>
                                 </div>
                             </div>
                             <br>
@@ -833,19 +834,19 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                 <br>
                                 <h5><i class="fas fa-comment-dots"></i> Comentarios</h5>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">
-Un comentario
-otro comentario
-otro comentario más
-otro comentario más
-otro comentario más
-                            </textarea>
+        Un comentario
+        otro comentario
+        otro comentario más
+        otro comentario más
+        otro comentario más
+                                    </textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="pages/form-addon.html" class="btn btn-primary">Edit</a>
-                        <button type="button" class="btn btn-danger list-delete">Delete</button>
+                        <button class="btn btn-primary mdEdit ">Edit</button>
+                        <button type="button" class="btn btn-danger mdDel">Delete</button>
                     </div>
                 </div>
             </div>

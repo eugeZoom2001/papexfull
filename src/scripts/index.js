@@ -103,8 +103,7 @@ const setArticulosToTable = (articulos) => {
       "class",
       "btnVer btn-custom-size2 alert alert-primary btn-alert-primary"
     );
-    // tdDivBtnVer.setAttribute("data-toggle", "modal")
-    // tdDivBtnVer.setAttribute("data-target", "#ver-info")
+
     let tdIconVer = document.createElement("i");
     tdIconVer.setAttribute("class", "far fa-eye");
     tdDivBtnVer.appendChild(tdIconVer);
@@ -138,11 +137,14 @@ const setArticulosToTable = (articulos) => {
 };
 
 const addListeners = () => {
-  $("#tbodyArticulos td .btnVer").click(function (e) {
-    let verArticulo = new bootstrap.Modal(
-      document.getElementById("modalArticulo")
-    );
-    verArticulo.show();
+  $("#tbodyArticulos td .btnVer").click(async function (e) {
+    var currentRow = $(this).closest("tr");
+    var data = $("#articulos").DataTable().row(currentRow).data();
+    const id = data[0];
+    //console.log("id art ver", id);
+    await getArticuloById(id);
+
+    // verArticulo.show();
   });
 
   $("#tbodyArticulos td .list-delete").click(function (e) {
@@ -168,19 +170,20 @@ const addListeners = () => {
       }
     });
   });
+
+  $("#articulos").on("click", ".btnEdit", function (e) {
+    e.preventDefault();
+    var currentRow = $(this).closest("tr");
+    var data = $("#articulos").DataTable().row(currentRow).data();
+    const id = data[0];
+    const params = new URLSearchParams();
+    params.append("id", id);
+    const queryString = params.toString();
+    const urlAddArticulo = "../pages/form-addon.html";
+    const url = `${urlAddArticulo}?${queryString}`;
+    window.location.href = url;
+  });
 };
-$("#articulos").on("click", ".btnEdit", function (e) {
-  e.preventDefault();
-  var currentRow = $(this).closest("tr");
-  var data = $("#articulos").DataTable().row(currentRow).data();
-  const id = data[0];
-  const params = new URLSearchParams();
-  params.append("id", id);
-  const queryString = params.toString();
-  const urlAddArticulo = "../pages/form-addon.html";
-  const url = `${urlAddArticulo}?${queryString}`;
-  window.location.href = url;
-});
 
 const configTable = () => {
   $("#articulos").DataTable({
@@ -214,10 +217,25 @@ const configTable = () => {
     },
   });
 };
+const getArticuloById = async (idArticulo) => {
+  axios
+    .get(`${urlBase}/${idArticulo}`)
+    .then(async function (response) {
+      // manejar respuesta exitosa
+      if (response.data.result === "ok") {
+        const articulo = response.data.data;
+        setModalInfo(articulo);
+      }
+    })
+    .catch(function (error) {
+      console.log("error"); // manejar error
+      console.log(error);
+    });
+};
 
 const deleteArticulo = async (idBorrar) => {
   await axios.delete(`${urlBase}/${idBorrar}`);
-  redirectToPage("../../index.html");
+  redirectToPage("index.html");
 };
 
 const checkQuiebre = (params) => {
@@ -225,9 +243,45 @@ const checkQuiebre = (params) => {
   //quiebre.show();
 };
 
-// function redirectToPage() {
-//   window.location.href = "pages/form-addon.html"; // Cambia esta URL según tu estructura de proyecto
-// }
+const setModalInfo = (articulo) => {
+  const {
+    id,
+    barras,
+    descripcion,
+    img,
+    reserva,
+    sku,
+    stock,
+    merma,
+    nombre_proveedor,
+  } = articulo;
+  $("#ver-info #mdDesc").text(descripcion);
+  $("#ver-info #mdBarras").text(barras);
+  $("#ver-info #mdStock").text(stock);
+  $("#ver-info #mdReserva").text(reserva);
+  $("#ver-info #mdMerma").text(merma);
+  $("#ver-info #mdBarras").text(barras);
+  $("#ver-info #mdSku").text(sku);
+  $("#ver-info #mdProv").text(nombre_proveedor);
+  $("#ver-info #mdImg").attr("src", `${urlImg}/${img}`);
+  $("#ver-info #mdImg").attr("alt", `${img}`);
+
+  $("#ver-info .mdEdit").click(function (e) {
+    const params = new URLSearchParams();
+    params.append("id", id);
+    const queryString = params.toString();
+    const urlAddArticulo = "pages/form-addon.html";
+    const url = `${urlAddArticulo}?${queryString}`;
+    window.location.href = url;
+  });
+
+  $("#ver-info .mdDel").click(async function (e) {
+    await deleteArticulo(id);
+  });
+
+  let modalArticulo = new bootstrap.Modal(document.getElementById("ver-info"));
+  modalArticulo.show();
+};
 
 function redirectToPage(url) {
   window.location.href = url;

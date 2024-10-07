@@ -28,7 +28,7 @@
 
     <style>
         /* Estilo personalizado para el encabezado de la tabla */
-        #proveedores thead th {
+        #tproveedores thead th {
             background-color: #dddcdc;
             /* Cambia este color a tu preferencia */
             color: #000;
@@ -37,23 +37,23 @@
         }
 
         /* Estilo personalizado para las filas de la tabla */
-        #proveedores tbody tr {
+        #tproveedores tbody tr {
             position: relative;
             /* Necesario para posicionar la sombra */
         }
 
-        #proveedores tbody tr:hover {
+        #tproveedores tbody tr:hover {
             background-color: #f1f1f1;
             /* Cambia el color de fondo de la fila al pasar el cursor sobre ella */
         }
 
         /* Aplicar sombra entre las filas */
-        #proveedores tbody tr:not(:last-child) {
+        #tproveedores tbody tr:not(:last-child) {
             border-bottom: 1px solid #ddd;
             /* Línea de separación entre filas */
         }
 
-        #proveedores tbody tr {
+        #tproveedores tbody tr {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             /* Sombra en las filas */
             transition: box-shadow 0.3s ease;
@@ -61,7 +61,7 @@
         }
 
         /* Efecto de sombra al pasar el cursor sobre la fila */
-        #proveedores tbody tr:hover {
+        #tproveedores tbody tr:hover {
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
             /* Sombra más intensa al pasar el cursor */
         }
@@ -338,86 +338,20 @@
 
 
                         <!-- Tabla con estilos DataTables -->
-                        <table id="proveedores" class="hover" style="width:100%">
+                        <table id="tproveedores" class="hover" style="width:100%">
                             <thead>
                                 <tr>
                                     <th style="text-align: center;"><i class="fas fa-filter"></i> Id interno</th>
                                     <th style="text-align: center;"><i class="fas fa-edit"></i> Nombre completo</th>
                                     <th style="text-align: center;"><i class="fas fa-user-shield"></i> Referente</th>
                                     <th style="text-align: center;"><i class="fas fa-phone-volume"></i> Telefonos</th>
+                                    <th>direccion</th>
+                                    <th>email</th>
                                     <th style="text-align: center;"><i class="fas fa-cog"></i> Opciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">001</td>
-                                    <td class="text-center">Una casa 1000 hogares</td>
-                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
-                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
+                            <tbody id="tbodyProveedores">
 
-                                    <td class="text-center">
-                                        <div class="btn-container">
-                                            <button
-                                                class="btnVer btn-custom-size2 alert alert-primary btn-alert-primary"
-                                                data-toggle="modal" data-target="#editLayoutItem"><i
-                                                    class="far fa-eye"></i></button>
-                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
-                                            <button
-                                                class="btnEdit btn-custom-size2 alert alert-warning btn-alert-warning"><i
-                                                    class="fas fa-pen"></i></button>
-                                            <button
-                                                class="btnDelete btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
-                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
-                              dispara eliminar articulo usa una animacion que se llama list-delete -->
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="text-center">001</td>
-                                    <td class="text-center">Una casa 1000 hogares</td>
-                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
-                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
-
-                                    <td class="text-center">
-                                        <div class="btn-container">
-                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
-                                                data-toggle="modal" data-target="#editLayoutItem"><i
-                                                    class="far fa-eye"></i></button>
-                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
-                                            <button
-                                                class="btnEdit btn-custom-size2 alert alert-warning btn-alert-warning"><i
-                                                    class="fas fa-pen"></i></button>
-                                            <button
-                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
-                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
-                              dispara eliminar articulo usa una animacion que se llama list-delete -->
-                                        </div>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="text-center">001</td>
-                                    <td class="text-center">Una casa 1000 hogares</td>
-                                    <td class="text-center"><strong>Juan Carlos Lopez</strong></td>
-                                    <td class="text-center"><em>1127392128 / 45578896 / 1134587841</em></td>
-
-                                    <td class="text-center">
-                                        <div class="btn-container">
-                                            <button class="btn-custom-size2 alert alert-primary btn-alert-primary"
-                                                data-toggle="modal" data-target="#editLayoutItem"><i
-                                                    class="far fa-eye"></i></button>
-                                            <!-- este abre el modal id= ver-info con los datos del articulo -->
-                                            <button class="btn-custom-size2 alert alert-warning btn-alert-warning"
-                                                onclick="redirectToPage()"><i class="fas fa-pen"></i></button>
-                                            <button
-                                                class="btn-custom-size2 alert alert-danger btn-alert-danger list-delete"><i
-                                                    class="fas fa-trash-alt"></i></button> <!-- este boton
-                              dispara eliminar articulo usa una animacion que se llama list-delete -->
-                                        </div>
-                                    </td>
-
-                                </tr>
                             </tbody>
 
 
@@ -442,30 +376,27 @@
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-filter"></i> ID interno</p>
-                                    <span class="badge badge-warning badge-pill custom-badge"> 001</span>
+                                    <span id="spId" class="badge badge-warning badge-pill custom-badge"></span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-edit"></i> Nombre completo</p>
-                                    <span class="badge badge-secondary badge custom-badge2"> Una casa mil hogares</span>
+                                    <span id="spNombre" class="badge badge-secondary badge custom-badge2"> </span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-user-shield"></i> Referente</p>
-                                    <span class="badge badge-secondary badge custom-badge2"> Juan Carlos Lopez</span>
+                                    <span id="spReferente" class="badge badge-secondary badge custom-badge2"> </span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-phone-volume"></i> Telefonos</p>
-                                    <span class="badge badge-secondary badge custom-badge2"> 1127392128 / 45578896 /
-                                        1134587841</span>
+                                    <span id="spTelefono" class="badge badge-secondary badge custom-badge2"> </span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-envelope"></i> Email</p>
-                                    <span class="badge badge-secondary badge custom-badge2"> boyle.aglea@example.com /
-                                        henry.chris@example.com</span>
+                                    <span id="spEmail" class="badge badge-secondary badge custom-badge2">
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <p style="font-size: 12px;"><i class="fas fa-map-marker-alt"></i> Direccion</p>
-                                    <span class="badge badge-secondary badge custom-badge2"> Remedios Escalada San
-                                        martin 11221</span>
+                                    <span id="spDireccion" class="badge badge-secondary badge custom-badge2"> </span>
                                 </li>
                             </ul>
 
@@ -491,8 +422,8 @@ otro comentario mas</textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <a href="../pages/nuevoprov.html" class="btn btn-primary">Editar</a>
-                            <button type="button" class="btn btn-danger list-delete">Borrar</button>
+                            <button type="button" class="btn btn-primary btnModalEdit">Editar</button>
+                            <button type="button" class="btn btn-danger btnModalDelete">Borrar</button>
                         </div>
                     </div>
                 </div>
@@ -530,7 +461,7 @@ otro comentario mas</textarea>
     <script src="../dist/js/theme.min.js"></script>
 
     <script src="../plugins/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/layouts.js"></script>
+    <!-- <script src="../js/layouts.js"></script> -->
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> -->
     <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>

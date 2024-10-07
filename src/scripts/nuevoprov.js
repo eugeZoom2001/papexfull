@@ -8,10 +8,6 @@ $(document).ready(function () {
 const init = () => {
   checkQuery();
 
-  $("#formProv").submit(function (e) {
-    e.preventDefault();
-    getForm();
-  });
   if (!isEdit) {
     $("input").click(function (e) {
       e.target.value = "";
@@ -20,6 +16,11 @@ const init = () => {
   $(".cancelBtn").click(() => {
     console.log("cancel");
     window.location.href = "../pages/proveedores.html";
+  });
+
+  $("#formProv").submit(function (e) {
+    e.preventDefault();
+    getForm();
   });
 };
 
@@ -36,6 +37,7 @@ const getForm = async () => {
 const sendData = (formData) => {
   if (!isEdit) postData(formData);
   else putData(formData);
+  redirectToPage("proveedores.html");
 };
 
 const postData = async (formData) => {
@@ -47,14 +49,13 @@ const postData = async (formData) => {
   })
     .then(function (response) {
       console.log(response);
-      $("input").val("");
     })
     .catch(function (response) {
       console.log(response);
     });
 };
 
-const putData = () => {
+const putData = (formData) => {
   axios({
     method: "put",
     url: `${urlProveedores}/${prov_actual}`,
@@ -63,7 +64,6 @@ const putData = () => {
   })
     .then(function (response) {
       console.log(response);
-      $("input").val("");
     })
     .catch(function (response) {
       console.log(response);
@@ -79,8 +79,34 @@ const checkQuery = async () => {
     isEdit = true;
     const id = urlParams.get("id");
     prov_actual = id;
-    console.log("id from nuevo prov", id);
+    isEdit = true;
+    await getProveedorById(id);
   } else {
     console.log("viene de Alta");
   }
 };
+
+const getProveedorById = async (idprov) => {
+  axios
+    .get(`${urlProveedores}/${idprov}`)
+    .then(async function (response) {
+      if (response.data.result === "ok") {
+        const proveedor = response.data.data;
+        const { nombre, direccion, telefono, referente, email } = proveedor;
+
+        $("#idNombre").val(nombre);
+        $("#idDireccion").val(direccion);
+        $("#idTelefono").val(telefono);
+        $("#idReferente").val(referente);
+        $("#idEmail").val(email);
+      }
+    })
+    .catch(function (error) {
+      console.log("error"); // manejar error
+      console.log(error);
+    });
+};
+
+function redirectToPage(url) {
+  window.location.href = url;
+}

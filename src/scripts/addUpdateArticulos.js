@@ -61,7 +61,6 @@ $(document).ready(async function () {
         $("#descripcion").val(desc);
       }
       $("#descripcion").focus();
-      //console.log("sku", sku, "id", id, "prov_actual ", prov);
       await getProveedores();
     });
   }
