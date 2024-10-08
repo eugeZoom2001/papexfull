@@ -101,7 +101,7 @@ const setArticulosToTable = (articulos) => {
     let tdDivBtnVer = document.createElement("button");
     tdDivBtnVer.setAttribute(
       "class",
-      "btnVer btn-custom-size2 alert alert-primary btn-alert-primary"
+      "btn-custom-size2 alert alert-primary btn-alert-primary btnVer"
     );
 
     let tdIconVer = document.createElement("i");
