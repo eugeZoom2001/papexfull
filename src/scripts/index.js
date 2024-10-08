@@ -141,10 +141,7 @@ const addListeners = () => {
     var currentRow = $(this).closest("tr");
     var data = $("#articulos").DataTable().row(currentRow).data();
     const id = data[0];
-    //console.log("id art ver", id);
     await getArticuloById(id);
-
-    // verArticulo.show();
   });
 
   $("#tbodyArticulos td .list-delete").click(function (e) {
