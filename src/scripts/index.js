@@ -235,11 +235,6 @@ const deleteArticulo = async (idBorrar) => {
   redirectToPage("index.html");
 };
 
-const checkQuiebre = (params) => {
-  var quiebre = new bootstrap.Modal(document.getElementById("quiebre"));
-  //quiebre.show();
-};
-
 const setModalInfo = (articulo) => {
   const {
     id,
@@ -283,3 +278,8 @@ const setModalInfo = (articulo) => {
 function redirectToPage(url) {
   window.location.href = url;
 }
+
+const checkQuiebre = (params) => {
+  var quiebre = new bootstrap.Modal(document.getElementById("quiebre"));
+  //quiebre.show();
+};
