@@ -1,9 +1,9 @@
 let articulos = null;
 let tableArticulos;
-
-$(function () {
+$(document).ready(function () {
   init();
 });
+
 const init = async () => {
   checkQuiebre();
   await getArticulosFromServer();
@@ -137,15 +137,14 @@ const setArticulosToTable = (articulos) => {
 };
 
 const addListeners = () => {
-  $("#tbodyArticulos td .btnVer").on("click", async function (e) {
+  $("#tbodyArticulos td .btnVer").click(async function (e) {
     var currentRow = $(this).closest("tr");
     var data = $("#articulos").DataTable().row(currentRow).data();
     const id = data[0];
-    const module = await import("./modules/modalArticulo.js");
-    module.makeModal(id);
+    await getArticuloById(id);
   });
 
-  $("#tbodyArticulos td .list-delete").on("click", function (e) {
+  $("#tbodyArticulos td .list-delete").click(function (e) {
     var currentRow = $(this).closest("tr");
     var data = $("#articulos").DataTable().row(currentRow).data();
     const id = data[0];
@@ -215,10 +214,65 @@ const configTable = () => {
     },
   });
 };
+const getArticuloById = async (idArticulo) => {
+  axios
+    .get(`${urlBase}/${idArticulo}`)
+    .then(async function (response) {
+      // manejar respuesta exitosa
+      if (response.data.result === "ok") {
+        const articulo = response.data.data;
+        setModalInfo(articulo);
+      }
+    })
+    .catch(function (error) {
+      console.log("error"); // manejar error
+      console.log(error);
+    });
+};
 
 const deleteArticulo = async (idBorrar) => {
   await axios.delete(`${urlBase}/${idBorrar}`);
   redirectToPage("index.html");
+};
+
+const setModalInfo = (articulo) => {
+  const {
+    id,
+    barras,
+    descripcion,
+    img,
+    reserva,
+    sku,
+    stock,
+    merma,
+    nombre_proveedor,
+  } = articulo;
+  $("#ver-info #mdDesc").text(descripcion);
+  $("#ver-info #mdBarras").text(barras);
+  $("#ver-info #mdStock").text(stock);
+  $("#ver-info #mdReserva").text(reserva);
+  $("#ver-info #mdMerma").text(merma);
+  $("#ver-info #mdBarras").text(barras);
+  $("#ver-info #mdSku").text(sku);
+  $("#ver-info #mdProv").text(nombre_proveedor);
+  $("#ver-info #mdImg").attr("src", `${urlImg}/${img}`);
+  $("#ver-info #mdImg").attr("alt", `${img}`);
+
+  $("#ver-info .mdEdit").click(function (e) {
+    const params = new URLSearchParams();
+    params.append("id", id);
+    const queryString = params.toString();
+    const urlAddArticulo = "pages/form-addon.html";
+    const url = `${urlAddArticulo}?${queryString}`;
+    window.location.href = url;
+  });
+
+  $("#ver-info .mdDel").click(async function (e) {
+    await deleteArticulo(id);
+  });
+
+  let modalArticulo = new bootstrap.Modal(document.getElementById("ver-info"));
+  modalArticulo.show();
 };
 
 function redirectToPage(url) {

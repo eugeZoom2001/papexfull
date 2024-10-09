@@ -95,7 +95,6 @@ const getProveedores = async () => {
   const url = `${urlProveedores}`;
   const res = await axios.get(url);
   if (res.status === 200) {
-    //console.log(res.data.data);
     setProveedoresSelect(res.data.data);
   } else {
     console.log("no hay proveedores");
@@ -109,11 +108,10 @@ const getDataSkus = (skus) => {
     console.log("no hay articulos con esa barra");
   } else {
     //
-    //ar_idActual = skus[0].ar_id;
+
     prov_actual = skus[0].ar_proveedor;
     for (const sku of skus) {
       let option = document.createElement("option");
-
       option.setAttribute("id", sku.ar_id);
       option.setAttribute("value", sku.ar_sku);
       option.setAttribute("prov", sku.ar_proveedor);
@@ -124,15 +122,15 @@ const getDataSkus = (skus) => {
   }
 };
 const setProveedoresSelect = (provs) => {
-  console.log("provs", provs);
-  console.log(
-    "id",
-    ar_idActual,
-    "prov_actual ",
-    prov_actual,
-    "type",
-    typeof prov_actual
-  );
+  //console.log("provs", provs);
+  // console.log(
+  //   "id",
+  //   ar_idActual,
+  //   "prov_actual ",
+  //   prov_actual,
+  //   "type",
+  //   typeof prov_actual
+  // );
   for (const prov of provs) {
     let selected = false;
     if (prov.prov_id === prov_actual) selected = true;
@@ -166,7 +164,7 @@ async function postArticulo() {
   axios
     .post(urlBase, formData)
     .then(function (response) {
-      console.log(response.data);
+      //console.log(response.data);
 
       document.location.href = "form-addon.html";
     })
@@ -202,7 +200,7 @@ const checkQuery = async () => {
   if (urlParams.has("id")) {
     isEdit = true;
     const id = urlParams.get("id");
-    console.log("id from Add-Form", id);
+    //console.log("id from Add-Form", id);
     await getArticuloFromId(id);
   } else {
     console.log("viene de Alta");
@@ -216,7 +214,7 @@ const getArticuloFromId = async (idArticulo) => {
       // manejar respuesta exitosa
       if (response.data.result === "ok") {
         const articulo = response.data.data;
-        console.log(articulo);
+        //console.log(articulo);
         const { barras, descripcion, id, id_proveedor, stock, sku } = articulo;
 
         ar_idActual = id;
