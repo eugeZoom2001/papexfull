@@ -11,3 +11,7 @@ const urlProveedores = "http://localhost:3000/api/proveedores";
 
 // imagenes articulos
 const urlImg = "http://localhost:3000";
+
+// movimientos
+const urlMovimientos = "http://localhost:3000/api/movimientos";
+const urlMovimientoAlta = "http://localhost:3000/api/movimientos/alta";

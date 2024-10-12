@@ -1,0 +1,9 @@
+articulos
+ar_id	ar_barras	ar_sku	ar_desc	ar_reserva	ar_stock	ar_merma	ar_urlimg	ar_proveedor
+2022	123456789	asd2564asd	Caable hdm 2.1 3.5 mentros	0	30	0	logos/articulos/4.jpg	1003
+
+movimientos
+
+mov_id	mov_articulo	mov_fecha	mov_tipo	mov_cantidad	mov_cta	mov_desc	mov_proveedor
+
+

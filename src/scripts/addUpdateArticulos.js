@@ -14,6 +14,7 @@ let sku_actual = null;
 let formData = null;
 let isEdit = false;
 const files = document.getElementById("file");
+let respuestaServer = null;
 
 $(document).ready(async function () {
   // me fijo si viene de edit
@@ -27,11 +28,11 @@ $(document).ready(async function () {
       $("#descripcion").val("");
     });
 
-    $("#cantidad").click(function (e) {
+    $("#cantidad").on("click", function (e) {
       $("#cantidad").val("");
     });
 
-    $("#inputBarras").change(async function (e) {
+    $("#inputBarras").on("change", async function (e) {
       if ($("#inputBarras").val()) {
         $("#inputSku").focus();
         resultSku = await getSkus();
@@ -65,11 +66,11 @@ $(document).ready(async function () {
     });
   }
 
-  $("#cancelButton").click(function (e) {
+  $("#cancelButton").on("click", function (e) {
     document.location.href = "../index.html";
   });
 
-  $("#formArticulo").submit(function (e) {
+  $("#formArticulo").on("submit", async function (e) {
     e.preventDefault();
     formData = new FormData();
     formData.append("sku", sku_actual);
@@ -83,10 +84,12 @@ $(document).ready(async function () {
       }
 
     if (esAlta) {
-      postArticulo();
+      if (formData.get("stock") != "0" && formData.get("stock") != "")
+        await postArticulo();
+      else console.log("error debe agregar una cantidad");
     } else {
       ar_idActual = ar_idActual.toString();
-      putArticulo();
+      respuestaServer = await putArticulo();
     }
   });
 });
@@ -122,15 +125,6 @@ const getDataSkus = (skus) => {
   }
 };
 const setProveedoresSelect = (provs) => {
-  //console.log("provs", provs);
-  // console.log(
-  //   "id",
-  //   ar_idActual,
-  //   "prov_actual ",
-  //   prov_actual,
-  //   "type",
-  //   typeof prov_actual
-  // );
   for (const prov of provs) {
     let selected = false;
     if (prov.prov_id === prov_actual) selected = true;
@@ -163,10 +157,12 @@ async function postArticulo() {
   openSpinner();
   axios
     .post(urlBase, formData)
-    .then(function (response) {
-      //console.log(response.data);
+    .then(async function (response) {
+      //closeSpinner();
+      // return response.data;
+      let dataResponse = response.data.data;
 
-      document.location.href = "form-addon.html";
+      await postMovimientoAlta(dataResponse);
     })
     .catch(function (error) {
       console.log(error);
@@ -176,19 +172,48 @@ async function postArticulo() {
 
 async function putArticulo() {
   openSpinner();
+
   try {
-    await axios({
+    return await axios({
       method: "PUT",
       url: urlBase + "/" + `${ar_idActual}`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
       },
+    }).then(async (result) => {
+      console.log(result);
+      let dataResponse = result.data.data;
+      console.log(dataResponse);
+      //closeSpinner();
+
+      if (dataResponse.stock && dataResponse.stock != "0")
+        await postMovimientoAlta(dataResponse);
+      else document.location.href = "form-addon.html";
     });
-    document.location.href = "form-addon.html";
+
+    //document.location.href = "form-addon.html";
   } catch (error) {
     console.log(error);
   }
+  closeSpinner();
+}
+
+async function postMovimientoAlta(data) {
+  let url = urlMovimientoAlta;
+  console.log("postMovimientoAlta");
+  console.log("url", url, "data", data);
+  openSpinner();
+  axios
+    .post(urlMovimientoAlta, data)
+    .then(function (response) {
+      // console.log(response.data.data);
+      openSpinner();
+      document.location.href = "form-addon.html";
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   closeSpinner();
 }
 
