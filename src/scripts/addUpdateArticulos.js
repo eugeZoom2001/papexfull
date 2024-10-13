@@ -184,6 +184,7 @@ async function putArticulo() {
     }).then(async (result) => {
       console.log(result);
       let dataResponse = result.data.data;
+      
       console.log(dataResponse);
       //closeSpinner();
 

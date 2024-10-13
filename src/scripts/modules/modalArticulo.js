@@ -1,4 +1,7 @@
-export const makeModal = (id_art) => {
+let id_actual = null;
+let motivo_merma = "Motivo de la merma";
+
+export const makeModal = async (id_art) => {
   getArticuloById(id_art);
 };
 
@@ -17,6 +20,8 @@ const getArticuloById = async (idArticulo) => {
       console.log(error);
     });
 };
+
+
 
 const setModalInfo = (articulo) => {
   const {
@@ -48,6 +53,17 @@ const setModalInfo = (articulo) => {
     const urlAddArticulo = "pages/form-addon.html";
     const url = `${urlAddArticulo}?${queryString}`;
     window.location.href = url;
+  });
+
+  $("#selectMerma").on("change", function (e) {
+    motivo_merma = $("#selectMerma").val();
+  });
+
+  $("#btnMerma").on("click", async function (e) {
+    if (motivo_merma != "Motivo de la merma") {
+      console.log("agrego merma");
+      showSuccessToast();
+    }
   });
 
   $("#ver-info .mdDel").on("click", async function (e) {

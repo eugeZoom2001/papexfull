@@ -764,7 +764,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                 <div class="form-group col-md-6">
                                     <br>
                                     <h5><i class="fas fa-user-edit"></i> Genera un ingreso a la lista de mermas</h5>
-                                    <select id="inputState" class="form-control">
+                                    <select id="selectMerma" class="form-control">
                                         <option selected>Motivo de la merma</option>
                                         <option>Producto fallado</option>
                                         <option>Devuelto en mal estado</option>
@@ -777,8 +777,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                 <div class="col-md-6">
                                     <br>
                                     <p>• Al ingresar una <code>MERMA</code> se resta un artículo al stock</p>
-                                    <button type="button" class="btn btn-success btn-fw"
-                                        onclick="showSuccessToast()">Ingresar
+                                    <button id="btnMerma" type="button" class="btn btn-success btn-fw">Ingresar
                                         nueva merma</button>
                                 </div>
                             </div>
@@ -880,6 +879,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
         <script src="dist/js/theme.min.js"></script>
         <script src="plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
         <script src="js/alerts.js"></script>
+        <script src="js/luxon.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
         <script src="js/axios.min.js"></script>
         <script src="src/scripts/constantes.js"></script>
