@@ -140,6 +140,7 @@ const addListeners = () => {
   $("#tbodyArticulos td .btnVer").on("click", async function (e) {
     var currentRow = $(this).closest("tr");
     var data = $("#articulos").DataTable().row(currentRow).data();
+    //console.log(data);
     const id = data[0];
     const module = await import("./modules/modalArticulo.js");
     module.makeModal(id);

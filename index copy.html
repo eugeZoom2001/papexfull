@@ -505,22 +505,27 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                             <br>
 
                             <div class="nav-item active">
-                                <a href="index.html"><i class="ik ik-edit"></i><span>Stock de productos</span></a>
+                                <a href="../index.html"><i class="ik ik-edit"></i><span>Stock de productos</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="javascript:void(0)"><i class="ik ik-save"></i><span>Gestion de Stock</span></a>
+                                <div class="submenu-content">
+                                    <a href="../pages/form-addon.html" class="menu-item">Alta/Modificacion de
+                                        articulos</a>
+                                    <a href="../pages/bajaart.html" class="menu-item">Baja de articulos</a>
+
+                                </div>
                             </div>
                             <div class="nav-item">
-                                <a href="pages/form-addon.html"><i class="ik ik-save"></i><span>Gestion de
-                                        Articulos</span></a>
-                            </div>
-                            <div class="nav-item">
-                                <a href="pages/ventas.html"><i class="fas fa-hand-holding-usd"></i><span>Gestion de
+                                <a href="../pages/ventas.html"><i class="fas fa-hand-holding-usd"></i><span>Gestion de
                                         Ventas</span></a>
                             </div>
                             <div class="nav-item has-sub">
                                 <a href="javascript:void(0)"><i class="fas fa-barcode"></i><span>Generar nuevo
                                         codigo</span></a>
                                 <div class="submenu-content">
-                                    <a href="pages/calendar.html" class="menu-item">Codigo de barras</a>
-                                    <a href="pages/codigoqr.html" class="menu-item">Codigo QR</a>
+                                    <a href="../pages/calendar.html" class="menu-item">Codigo de barras</a>
+                                    <a href="../pages/codigoqr.html" class="menu-item">Codigo QR</a>
 
                                 </div>
                             </div>
@@ -528,9 +533,9 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                             <div class="nav-item has-sub">
                                 <a href="#"><i class="ik ik-user-plus"></i><span>Lista de Proveedores</span></a>
                                 <div class="submenu-content">
-                                    <a href="pages/proveedores.html" class="menu-item">
+                                    <a href="../pages/proveedores.html" class="menu-item">
                                         Listar/editar/eliminar</a>
-                                    <a href="pages/nuevoprov.html" class="menu-item">
+                                    <a href="../pages/nuevoprov.html" class="menu-item">
                                         Alta nuevo Proveedor</a>
 
                                 </div>
@@ -539,10 +544,11 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                             <div class="nav-item has-sub">
                                 <a href="#"><i class="ik ik-pie-chart"></i><span>Graficos</span></a>
                                 <div class="submenu-content">
-                                    <a href="pages/charts-chartist.html" class="menu-item active">Lista de graficos</a>
-                                    <a href="pages/charts-flot.html" class="menu-item">Graficos en cascada</a>
-                                    <a href="pages/charts-knob.html" class="menu-item">Manejo de graficos</a>
-                                    <a href="pages/charts-amcharts.html" class="menu-item">Graficos interactivos</a>
+                                    <a href="../pages/charts-chartist.html" class="menu-item active">Lista de
+                                        graficos</a>
+                                    <a href="../pages/charts-flot.html" class="menu-item">Graficos en cascada</a>
+                                    <a href="../pages/charts-knob.html" class="menu-item">Manejo de graficos</a>
+                                    <a href="../pages/charts-amcharts.html" class="menu-item">Graficos interactivos</a>
                                 </div>
                             </div>
                         </nav>
@@ -758,7 +764,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                 <div class="form-group col-md-6">
                                     <br>
                                     <h5><i class="fas fa-user-edit"></i> Genera un ingreso a la lista de mermas</h5>
-                                    <select id="inputState" class="form-control">
+                                    <select id="selectMerma" class="form-control">
                                         <option selected>Motivo de la merma</option>
                                         <option>Producto fallado</option>
                                         <option>Devuelto en mal estado</option>
@@ -771,8 +777,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
                                 <div class="col-md-6">
                                     <br>
                                     <p>• Al ingresar una <code>MERMA</code> se resta un artículo al stock</p>
-                                    <button type="button" class="btn btn-success btn-fw"
-                                        onclick="showSuccessToast()">Ingresar
+                                    <button id="btnMerma" type="button" class="btn btn-success btn-fw">Ingresar
                                         nueva merma</button>
                                 </div>
                             </div>
@@ -874,6 +879,7 @@ seria ideal que lo muestre solo una vez al loguearte "QUIEBRE DE STOCK" -->
         <script src="dist/js/theme.min.js"></script>
         <script src="plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
         <script src="js/alerts.js"></script>
+        <script src="js/luxon.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
         <script src="js/axios.min.js"></script>
         <script src="src/scripts/constantes.js"></script>

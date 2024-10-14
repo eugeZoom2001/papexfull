@@ -15,3 +15,8 @@ const urlImg = "http://localhost:3000";
 // movimientos
 const urlMovimientos = "http://localhost:3000/api/movimientos";
 const urlMovimientoAlta = "http://localhost:3000/api/movimientos/alta";
+const urlMovimientoVenta = "http://localhost:3000/api/movimientos/venta";
+const urlMovimientosMerma = "http://localhost:3000/api/movimientos/merma";
+
+// Cuentas
+const urlCuentas = "http://localhost:3000/api/cuentas";

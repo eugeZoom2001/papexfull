@@ -16,8 +16,9 @@ let isEdit = false;
 const files = document.getElementById("file");
 let respuestaServer = null;
 
-$(document).ready(async function () {
+$(function () {
   // me fijo si viene de edit
+  $("#inputBarras").trigger("focus");
   checkQuery();
   if (!isEdit) {
     $("#inputSku").click(function (e) {
@@ -61,7 +62,7 @@ $(document).ready(async function () {
         $("#stockActual").val(stock_actual);
         $("#descripcion").val(desc);
       }
-      $("#descripcion").focus();
+      $("#descripcion").trigger("focus");
       await getProveedores();
     });
   }
@@ -184,7 +185,7 @@ async function putArticulo() {
     }).then(async (result) => {
       console.log(result);
       let dataResponse = result.data.data;
-      
+
       console.log(dataResponse);
       //closeSpinner();
 
