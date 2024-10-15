@@ -17,6 +17,10 @@
                 console.log(date);
                 const ahora = luxon.DateTime.now().toFormat("dd/MM/yyyy");
                 console.log(ahora);
+
+                const fechaLux = luxon.DateTime.now().toISO({ includeOffset: true })
+
+                console.log(fechaLux);
         </script>
 
 

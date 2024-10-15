@@ -5,7 +5,7 @@ let mermas = null;
 let proveedor_actual = null;
 
 export const makeModal = async (id_art) => {
-  console.log("se carga el modal");
+  //console.log("se carga el modal");
   motivo_merma = "Motivo de la merma";
   id_actual = id_art;
 
@@ -39,8 +39,8 @@ const getMomimientosById = (idArticulo) => {
       // manejar respuesta exitosa
       if (response.data.result === "ok") {
         movimientos = [...response.data.data];
-        console.log("movimientos");
-        console.log(movimientos);
+        // console.log("movimientos");
+        // console.log(movimientos);
         getMermas(movimientos);
       }
     })
@@ -50,9 +50,9 @@ const getMomimientosById = (idArticulo) => {
 };
 
 const getMermas = (movimientos) => {
-  console.log("mermas movimientos", movimientos);
+  //console.log("mermas movimientos", movimientos);
   mermas = [...movimientos.filter((mov) => mov.mov_tipo === "merma")];
-  console.log("mermas", mermas);
+  // console.log("mermas", mermas);
 
   setTablaMovimientos(movimientos);
   setTablaMermas(mermas);
@@ -176,8 +176,9 @@ const setModalInfo = (articulo) => {
     window.location.href = url;
   });
   $("#ver-info").on("hidden.bs.modal", function () {
-    $("#table_mermas tr").remove();
-    $("#table_mov tr").remove();
+    // borro los datos de las tablas porque si no quedan en el dom la proxima vez que abra
+    clearTableMov();
+    clearTableMermas();
   });
 
   $("#selectMerma").on("change", function (e) {
@@ -190,23 +191,65 @@ const setModalInfo = (articulo) => {
     const motivo = motivo_merma;
     const proveedor = proveedor_actual;
     const dataSend = { id, motivo, cant, proveedor };
-    // *********************************************
-    //        agregar merma a las tablas
-    // *********************************************
+
     if (motivo_merma != "Motivo de la merma") {
-      console.log("agrego merma", motivo_merma, "id_articulo", id_actual);
+      //console.log("agrego merma", motivo_merma, "id_articulo", id_actual);
+      let body_mermas = document.getElementById("body_mermas");
+      let prepend = false;
+      if (body_mermas.children) {
+        prepend = true;
+      }
+      let mermaToTableMermas = {
+        mov_desc: motivo,
+        mov_fecha: luxon.DateTime.now().toISO({ includeOffset: true }),
+      };
+
+      agregarItemTablaMermas(mermaToTableMermas, -1, body_mermas, prepend);
+
+      prepend = false;
+      let body_mov = document.getElementById("body_mov");
+      if (body_mov.children) prepend = true;
+      let mermaToTableMov = {
+        mov_tipo: "merma",
+        mov_cantidad: 1,
+        mov_proveedor: proveedor,
+        mov_fecha: luxon.DateTime.now().toISO({ includeOffset: true }),
+      };
+      agregarItemTablaMovimientos(mermaToTableMov, -1, body_mov, prepend);
+
+      // Agrego Merma
+      let mermaActual = (Number($("#mdMerma").text()) + 1).toString();
+      $("#mdMerma").text(mermaActual);
+
       $("#selectMerma").val("Motivo de la merma");
       motivo_merma = "Motivo de la merma";
       sendMerma(dataSend);
     }
   });
 
+  const clearTableMov = () => {
+    const tableBody = document.querySelector("#table_mov tbody");
+
+    // Loop through rows and remove them
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.firstChild);
+    }
+  };
+  const clearTableMermas = () => {
+    const tableBody = document.querySelector("#table_mermas tbody");
+
+    // Loop through rows and remove them
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.firstChild);
+    }
+  };
+
   const sendMerma = async (data) => {
     axios
       .post(urlMovimientosMerma, data)
       .then(async function (response) {
         let dataResponse = response.data.data;
-        console.log(dataResponse);
+        //console.log(dataResponse);
         motivo_merma = "Motivo de la merma";
         movimientos = null;
         mermas = null;
