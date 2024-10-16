@@ -1,0 +1,270 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<title>Ordenar Tabla</title> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head> 
+
+<body> 
+	<table name="mytable" id="mytable">
+		<thead>
+		  <tr>
+			<th>fecha </th>
+			<th>column2</th>
+			<th>column3</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>13/02/2021</td>
+			<td>Beta</td>
+			<td>Gamma</td>
+		  </tr>
+		  <tr>
+			<td>31/08/2020</td>
+			<td>Gamma</td>
+			<td>Beta</td>
+		  </tr>
+		  <tr>
+			<td>01/01/2021
+
+			</td>
+			<td>Gamma</td>
+			<td>Alpha</td>
+		  </tr>
+		</tbody>
+	  </table>
+
+
+<script>
+	const fecha ="05/02/2021"; 
+	//console.log(convertirFechaServer(fecha));//ok aaaa-mm--dd
+	
+	sortTable("#mytable",convertirFechaServer,0);
+
+
+
+//Funciones
+
+
+// *** funcion que ordena tablas 
+// -tag = id de la tabla ej #idTabla 
+// - convertFuncion es una funcion auxiliar que convierte los datos de una columna
+//   para poder ordenar ej:convertir fecha a aaaa-mm-dd
+// columna : numero de columna sobre la que se va a ordenar 
+function sortTable(tag,convertFunction,columna) {
+    var result;  
+	var rows = $(`${tag} tbody  tr`).get();
+	  
+      rows.sort(function (a, b) {
+        
+		var A =  convertFunction ($(a).children('td').eq(columna).text());
+        var B =   convertFunction( $(b).children('td').eq(columna).text());
+		
+
+        if (A < B) {
+          return -1;
+        }
+
+        if (A > B) {
+          return 1;
+        }
+
+        return 0;
+
+      });
+
+	
+      $.each(rows, function (index, row) {
+        $(tag).children('tbody').append(row);
+      });
+    
+	  
+	}
+
+
+
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
+
+
+// ****retorna un string que representa una fecha en formato dd/mm/aaaa mm:ss 
+
+
+
+function fechayHora(){
+  var currentDate = new Date();
+  var date = currentDate.getDate();
+  var month = currentDate.getMonth(); 
+  var year = currentDate.getFullYear();
+  var hora = currentDate.getHours();
+  var minutos = currentDate.getMinutes();
+  
+  var ddmmyyyy = pad(date) + "/" + pad(month + 1) + "/" + year+" "+hora+":"+pad(minutos) ;
+  //alert("fecha Hora"+ddmmyyyy);	
+  return ddmmyyyy;
+  }	
+  
+  function pad(n) {
+      return n<10 ? '0'+n : n;
+  }
+
+function crearFechaStr(){
+  var currentDate = new Date();
+  var date = currentDate.getDate();
+  var month = currentDate.getMonth(); 
+  var year = currentDate.getFullYear();
+  var ddmmyyyy = pad(date) + "/" + pad(month + 1) + "/" + year;
+  return ddmmyyyy;
+
+}
+
+// *** recibe una fecha yyyy-mm-dd y lo convierte en dd/mm/AAAA 
+function crearFechaMostrar(fecha) {
+  let ddmmyyyy;
+   if(fecha!=null){
+   if(fecha.length>0){ 
+    if (fecha === VENCIMIENTO_POR_DEFECTO) {
+      ddmmyyyy = "";
+    } else {
+      let fechaArr = fecha.split("-");
+      ddmmyyyy = fechaArr[2] + "/" + fechaArr[1] + "/" + fechaArr[0];
+    }
+   }else{
+     ddmmyyyy="";
+   }
+   }else{
+     ddmmyyyy=""
+   }
+   return ddmmyyyy;
+}
+
+function crearFechaSortable(){
+  var currentDate = new Date();
+  var date = currentDate.getDate();
+  var month = currentDate.getMonth(); 
+  var year = currentDate.getFullYear();
+  var yyyymmdd = pad(date) + "/" + pad(month + 1) + "/" + year;
+  var yyyymmdd = year + "-" + pad(month + 1) + "-" + pad(date);
+  
+  return  yyyymmdd;
+}
+
+// recibe un string dd/mm/yyyy y lo convierte en otro yyyy-mm-dd
+function convertirFechaServer(fecha) {
+  let fechaNuevaArr, yyyymmdd = null;
+  if (fecha != null) {
+    if (fecha.length > 0) {
+     
+        fechaNuevaArr = fecha.split("/");
+        yyyymmdd = fechaNuevaArr[2] + "-" + fechaNuevaArr[1] + "-" + fechaNuevaArr[0];
+      
+    } else {
+      yyyymmdd = "";
+    }
+
+  } else {
+    yyyymmdd = ""
+  }
+  //console.log("convertir Fecha",yyyymmdd);
+  return yyyymmdd;
+}
+
+//Funciones fecha y hora
+/* recibe un String que representa una fecha Y hora en 
+ formato 'dd/mm/aaaa" y devuelve otro String parseable por la funcion 
+ Date()
+*/
+ 
+function convertirFechaHora(fechaHora){
+	let fechaHoraNueva="2011/12/31 00:00";
+	  if(fechaHora.length>8){
+		let fechaHoraStr =fechaHora.split(" ");
+		let fechaNueva = fechaHoraStr[0].split("/");
+		fecha=fechaNueva[2]+"/"+fechaNueva[1]+"/"+fechaNueva[0]; 
+		fechaHoraNueva = fecha+" "+fechaHoraStr[1];
+		
+	  }
+	  
+	return fechaHoraNueva;
+  }
+
+
+
+// *** contruye una fecha hora  a partir de 2 cadenas
+//    "dd/mm/aaaa" y "mm:ss" y devuelme una cadena parseable parea Date()
+//     aaaa/mm/dd mm:55
+
+
+
+
+function construirFechaHoraP (fechaH,horaH){
+
+//contruye una fecha hora  a partir de 2 cadenas
+// "dd/mm/aaaa" y "mm:ss" y devuelme una cadena parseable parea Date()
+// aaaa/mm/dd mm:55
+
+
+var dateParts = fechaH.split("/");
+var fechaHoraP = dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0];
+
+fechaHoraP+=" "+horaH;
+return fechaHoraP;
+
+}
+
+
+
+
+//****	calcula la diferencia de tiempo en unidades unid
+//	donde unid puede ser "m":minutos ; "s":segundos ;h:horas 
+//	y las fechaHora son en formato Date() 
+function diferenciaT(fechaHoraH,fechaHoraD,unid){
+
+var diferencia=fechaHoraH-fechaHoraD; 
+switch (unid) {
+  case 'h':
+diferencia=diferencia/3600000;
+    break;
+  case 'm':
+    diferencia=diferencia/60000; 
+    break;
+  case 's':
+    diferencia=diferencia/1000;
+    break;
+    default:
+     
+
+}
+return Math.floor(diferencia);
+
+}
+
+
+
+
+
+
+
+function remove_accent(str) {var map={'À':'A','Á':'A','Â':'A','Ã':'A','Ä':'A','Å':'A','Æ':'AE','Ç':'C','È':'E','É':'E','Ê':'E','Ë':'E','Ì':'I','Í':'I','Î':'I','Ï':'I','Ð':'D','Ò':'O','Ó':'O','Ô':'O','Õ':'O','Ö':'O','Ø':'O','Ù':'U','Ú':'U','Û':'U','Ü':'U','Ý':'Y','ß':'s','à':'a','á':'a','â':'a','ã':'a','ä':'a','å':'a','æ':'ae','ç':'c','è':'e','é':'e','ê':'e','ë':'e','ì':'i','í':'i','î':'i','ï':'i','ò':'o','ó':'o','ô':'o','õ':'o','ö':'o','ø':'o','ù':'u','ú':'u','û':'u','ü':'u','ý':'y','ÿ':'y','Ā':'A','ā':'a','Ă':'A','ă':'a','Ą':'A','ą':'a','Ć':'C','ć':'c','Ĉ':'C','ĉ':'c','Ċ':'C','ċ':'c','Č':'C','č':'c','Ď':'D','ď':'d','Đ':'D','đ':'d','Ē':'E','ē':'e','Ĕ':'E','ĕ':'e','Ė':'E','ė':'e','Ę':'E','ę':'e','Ě':'E','ě':'e','Ĝ':'G','ĝ':'g','Ğ':'G','ğ':'g','Ġ':'G','ġ':'g','Ģ':'G','ģ':'g','Ĥ':'H','ĥ':'h','Ħ':'H','ħ':'h','Ĩ':'I','ĩ':'i','Ī':'I','ī':'i','Ĭ':'I','ĭ':'i','Į':'I','į':'i','İ':'I','ı':'i','Ĳ':'IJ','ĳ':'ij','Ĵ':'J','ĵ':'j','Ķ':'K','ķ':'k','Ĺ':'L','ĺ':'l','Ļ':'L','ļ':'l','Ľ':'L','ľ':'l','Ŀ':'L','ŀ':'l','Ł':'L','ł':'l','Ń':'N','ń':'n','Ņ':'N','ņ':'n','Ň':'N','ň':'n','ŉ':'n','Ō':'O','ō':'o','Ŏ':'O','ŏ':'o','Ő':'O','ő':'o','Œ':'OE','œ':'oe','Ŕ':'R','ŕ':'r','Ŗ':'R','ŗ':'r','Ř':'R','ř':'r','Ś':'S','ś':'s','Ŝ':'S','ŝ':'s','Ş':'S','ş':'s','Š':'S','š':'s','Ţ':'T','ţ':'t','Ť':'T','ť':'t','Ŧ':'T','ŧ':'t','Ũ':'U','ũ':'u','Ū':'U','ū':'u','Ŭ':'U','ŭ':'u','Ů':'U','ů':'u','Ű':'U','ű':'u','Ų':'U','ų':'u','Ŵ':'W','ŵ':'w','Ŷ':'Y','ŷ':'y','Ÿ':'Y','Ź':'Z','ź':'z','Ż':'Z','ż':'z','Ž':'Z','ž':'z','ſ':'s','ƒ':'f','Ơ':'O','ơ':'o','Ư':'U','ư':'u','Ǎ':'A','ǎ':'a','Ǐ':'I','ǐ':'i','Ǒ':'O','ǒ':'o','Ǔ':'U','ǔ':'u','Ǖ':'U','ǖ':'u','Ǘ':'U','ǘ':'u','Ǚ':'U','ǚ':'u','Ǜ':'U','ǜ':'u','Ǻ':'A','ǻ':'a','Ǽ':'AE','ǽ':'ae','Ǿ':'O','ǿ':'o'};var res='';for (var i=0;i<str.length;i++){c=str.charAt(i);res+=map[c]||c;}return res;} 	
+
+/*
+function getRandom(valor) {
+    //console.log(parseInt(Number("0xdc"), 10));
+	//let random=0;
+	//console.log(sha1(valor).slice(0,9));
+	//console.log(Number("0x"+sha1(valor).slice(0,6)));
+	
+	//random=Number("0x"+sha1(valor).slice(0,6));
+	return Number("0x"+sha1(valor).slice(0,7));
+}
+*/
+    
+
+	</script> 
+
+</body> 
+
+</html> 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Tabla Ordenada2</title>
+  <style>
+    td,
+    th {
+      padding: 4px;
+    }
+
+    th {
+      cursor: pointer;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    table,
+    td,
+    th {
+      border: 1px solid #ddd;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <table class="sortable">
+    <thead>
+      <th>English</th>
+      <th>Spanish</th>
+      <th>Italian</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>One</td>
+        <td>Uno</td>
+        <td>Uno</td>
+      </tr>
+      <tr>
+        <td>Two</td>
+        <td>Dos</td>
+        <td>Due</td>
+      </tr>
+      <tr>
+        <td>Three</td>
+        <td>Tres</td>
+        <td>Tre</td>
+      </tr>
+      <tr>
+        <td>Four</td>
+        <td>Cuatro</td>
+        <td>Quattro</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <script>
+    // Hook `click` on the table header, but only call our callback if
+    // that click passes through a `th`
+    $(".sortable thead").on("click", "th", function () {
+      // Which column is this?
+      var index = $(this).index();
+
+      // Get the tbody
+      var tbody = $(this).closest("table").find("tbody");
+
+      // Disconnect the rows and get them as an array
+      var rows = tbody.children().detach().get();
+      
+      // Sort it
+      rows.sort(function (left, right) {
+       
+        // Get the text of the relevant td from left and right
+        var $left = $(left).children().eq(index);
+        var $right = $(right).children().eq(index);
+        return $left.text().localeCompare($right.text());
+      });
+
+      // Put them back in the tbody
+      tbody.append(rows);
+    });
+
+  </script>
+
+
+
+</body>
+
+</html>

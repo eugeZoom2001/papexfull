@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar dinamicamente elementos a una lista en JavaScript y recorrerlos</title>
+ <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+
+   <table border='1' id="myTable">
+
+<tr>
+<td>2</td>
+<td>Iphone SE</td>
+<td>Iphone laucnhed new phone bosy of 5s with feature of 6s</td>
+<td><button class="btn-success">Select</button></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Sony z3</td>
+<td>This is waterproof, well designed, etc</td>
+<td><button class="btn-success">Select</button></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Moto X Play</td>
+<td>Another class product from Moto G Family</td>
+<td><button class="btn-success">Select</button></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Samsung S7</td>
+<td>Best smart phone, nice UI etc.</td>
+<td><button class="btn-success">Select</button></td>
+</tr>
+</table>
+
+
+<script>
+$(document).ready(function(){
+
+    // code to read selected table row cell data (values).
+    $("#myTable").on('click','.btn-success',function(){
+         // get the current row
+         var currentRow=$(this).closest("tr"); 
+         
+         var col1=currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+         var col2=currentRow.find("td:eq(1)").text(); // get current row 2nd TD
+         var col3=currentRow.find("td:eq(2)").text(); // get current row 3rd TD
+         var data=col1+"\n"+col2+"\n"+col3;
+         
+         alert(data);
+    });
+});
+
+</script>
+
+</body>
+</html>
+

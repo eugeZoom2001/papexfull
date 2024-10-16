@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+
+    <title>Moviles</title>
+  </head>
+
+  <body>
+    <table name="mytable" id="mytable">
+      <thead>
+        <tr>
+          <th>fecha</th>
+          <th>nombre</th>
+          <th>Edad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>13/02/2021</td>
+          <td>Beto</td>
+          <td>14</td>
+        </tr>
+        <tr>
+          <td>31/08/2019</td>
+          <td>pepe</td>
+          <td>24</td>
+        </tr>
+        <tr>
+          <td>31/08/2020</td>
+          <td>Gonzalo</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>lucas</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    <script>
+      function convertirFechaServer(fecha) {
+        let fechaNuevaArr,
+          yyyymmdd = null;
+        if (fecha != null) {
+          if (fecha.length > 0) {
+            fechaNuevaArr = fecha.split("/");
+            yyyymmdd =
+              fechaNuevaArr[2] +
+              "-" +
+              fechaNuevaArr[1] +
+              "-" +
+              fechaNuevaArr[0];
+          } else {
+            yyyymmdd = "";
+          }
+        } else {
+          yyyymmdd = "";
+        }
+        //console.log("convertir Fecha",yyyymmdd);
+        return yyyymmdd;
+      }
+
+      const comparar = (a,b,convert) => {
+        const A= convert(a.fecha);
+        const B = convert(b.fecha);
+        if (A<B){
+          return -1;
+        }
+        if(A>B){
+          return 1;
+         
+        }
+        return 0;
+      }
+      
+
+      const buscarFechas = () => {
+        let datos = [];
+        $("#mytable  tbody tr").each(function (index, element) {
+          let tds = $(this).find("td");
+          let data = {};
+          data.fecha = tds.eq(0).text();
+          data.nombre = tds.eq(1).text();
+          data.edad = tds.eq(2).text();
+          datos.push(data);
+        });
+        return datos;
+      };
+      
+      
+      let items = buscarFechas();
+   
+
+     let itemsOrdenados = items.sort((a,b) => {
+       return comparar(a,b,convertirFechaServer);
+     })
+    console.log(itemsOrdenados);
+   </script>
+  </body>
+</html>

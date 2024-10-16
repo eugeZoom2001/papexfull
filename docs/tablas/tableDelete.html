@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+                table,
+                td {
+                        border: 1px solid black;
+                }
+        </style>
+</head>
+
+<body>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <table name="mytable" id="mytable">
+                <thead>
+                        <tr>
+                                <th>column1</th>
+                                <th>column2</th>
+                                <th>column3</th>
+                        </tr>
+                </thead>
+                <tbody id="body">
+                        <tr>
+                                <td>zeta</td>
+                                <td>Beta</td>
+                                <td>Gamma</td>
+
+                        </tr>
+                        <!--
+                        <tr>
+                                <td>Gamma</td>
+                                <td>Gamma</td>
+                                <td>Beta</td>
+                        </tr>
+                        <tr>
+                                <td>alpha</td>
+                                <td>Gamma</td>
+                                <td>Alpha</td>
+                        </tr> -->
+                </tbody>
+        </table>
+
+        <script>
+                var tb = document.getElementById("body");
+
+
+                const tableInsert = () => {
+                        const row = document.createElement("tr")
+                        let td
+                        td = document.createElement("td")
+                        td.innerText = "euge"
+                        row.appendChild(td)
+
+                        td = document.createElement("td")
+                        td.innerText = "Experto"
+                        row.appendChild(td)
+
+                        td = document.createElement("td")
+                        td.innerText = "Javascript"
+                        row.append(td)
+
+                        if (tb.children) {
+                                tb.prepend(row)
+                        } else {
+                                tb.append(row)
+                        }
+                }
+
+                const tableDelete = () => {
+                        //$('#mytable tbody tr').each((i, e) => $(e).remove()) //ok
+                        //$('#mytable tbody tr').empty() // ok
+                        $('#mytable tbody tr').html("") //ok
+                }
+
+
+                tableInsert()
+                tableDelete()
+
+        </script>
+</body>
+
+</html>
